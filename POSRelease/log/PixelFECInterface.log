@@ -1,0 +1,20 @@
+A    PixelFECInterface/test
+A    PixelFECInterface/test/testPFEC.cc
+A    PixelFECInterface/test/PFECAddressMap.dat
+A    PixelFECInterface/test/Makefile
+A    PixelFECInterface/include
+A    PixelFECInterface/include/PixelFECInterface.h
+A    PixelFECInterface/spec.template
+A    PixelFECInterface/doc
+A    PixelFECInterface/doc/html
+A    PixelFECInterface/doc/html/overview.html
+A    PixelFECInterface/doc/html/index.html
+A    PixelFECInterface/src
+A    PixelFECInterface/src/common
+A    PixelFECInterface/src/common/PixelFECInterface.cc
+A    PixelFECInterface/dat
+A    PixelFECInterface/dat/infeccmd.dat
+A    PixelFECInterface/dat/PFECAddressMap.dat
+A    PixelFECInterface/Makefile
+ U   PixelFECInterface
+Checked out revision 4806.

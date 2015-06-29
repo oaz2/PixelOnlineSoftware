@@ -1,0 +1,15 @@
+A    PixelSupervisorGUI/include
+A    PixelSupervisorGUI/include/PixelSupervisorGUI.h
+A    PixelSupervisorGUI/html
+A    PixelSupervisorGUI/html/pixelsupervisor.gif
+A    PixelSupervisorGUI/html/Configure.htm
+A    PixelSupervisorGUI/doc
+A    PixelSupervisorGUI/doc/html
+A    PixelSupervisorGUI/doc/html/overview.html
+A    PixelSupervisorGUI/doc/html/index.html
+A    PixelSupervisorGUI/src
+A    PixelSupervisorGUI/src/common
+A    PixelSupervisorGUI/src/common/PixelSupervisorGUI.cc
+A    PixelSupervisorGUI/Makefile
+ U   PixelSupervisorGUI
+Checked out revision 4806.

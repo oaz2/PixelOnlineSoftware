@@ -1,0 +1,17 @@
+A    PixelDCSSupervisor/xml
+A    PixelDCSSupervisor/xml/supervisor.xml
+A    PixelDCSSupervisor/include
+A    PixelDCSSupervisor/include/PixelDCSSupervisor.h
+A    PixelDCSSupervisor/include/version.h
+A    PixelDCSSupervisor/html
+A    PixelDCSSupervisor/html/Release.htm
+A    PixelDCSSupervisor/html/Take.htm
+A    PixelDCSSupervisor/conf
+A    PixelDCSSupervisor/conf/clientApp.set
+A    PixelDCSSupervisor/src
+A    PixelDCSSupervisor/src/common
+A    PixelDCSSupervisor/src/common/PixelDCSSupervisor.cc
+A    PixelDCSSupervisor/src/common/version.cc
+A    PixelDCSSupervisor/Makefile
+ U   PixelDCSSupervisor
+Checked out revision 4806.

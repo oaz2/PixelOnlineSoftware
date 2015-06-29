@@ -1,0 +1,9 @@
+A    PixelFEDMonitor/include
+A    PixelFEDMonitor/include/PixelFEDMonitor.h
+A    PixelFEDMonitor/src
+A    PixelFEDMonitor/src/common
+A    PixelFEDMonitor/src/common/PixelFEDMonitor.cc
+A    PixelFEDMonitor/Makefile
+A    PixelFEDMonitor/README
+ U   PixelFEDMonitor
+Checked out revision 4806.

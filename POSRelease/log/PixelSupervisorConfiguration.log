@@ -1,0 +1,14 @@
+A    PixelSupervisorConfiguration/include
+A    PixelSupervisorConfiguration/include/PixelFEDSupervisorConfiguration.h
+A    PixelSupervisorConfiguration/include/PixelSupervisorConfiguration.h
+A    PixelSupervisorConfiguration/include/PixelSupervisorConfigurationBase.h
+A    PixelSupervisorConfiguration/include/PixelTKFECSupervisorConfiguration.h
+A    PixelSupervisorConfiguration/src
+A    PixelSupervisorConfiguration/src/common
+A    PixelSupervisorConfiguration/src/common/PixelSupervisorConfiguration.cc
+A    PixelSupervisorConfiguration/src/common/PixelSupervisorConfigurationBase.cc
+A    PixelSupervisorConfiguration/src/common/PixelTKFECSupervisorConfiguration.cc
+A    PixelSupervisorConfiguration/src/common/PixelFEDSupervisorConfiguration.cc
+A    PixelSupervisorConfiguration/Makefile
+ U   PixelSupervisorConfiguration
+Checked out revision 4806.

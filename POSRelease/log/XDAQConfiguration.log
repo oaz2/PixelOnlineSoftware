@@ -1,0 +1,21 @@
+A    XDAQConfiguration/GEDConfig.set
+A    XDAQConfiguration/ConfigurationPSI.xml
+A    XDAQConfiguration/ViewerApplication.xml
+A    XDAQConfiguration/ConfigurationFPix_DCS.xml
+A    XDAQConfiguration/ConfigurationPSXServer.xml
+A    XDAQConfiguration/LogViewer.set
+A    XDAQConfiguration/LogViewer_offline.set
+A    XDAQConfiguration/Profile.xml
+A    XDAQConfiguration/runPSXServer.sh
+A    XDAQConfiguration/SupervisorConfig.set
+A    XDAQConfiguration/PixelFECSupervisor_new.set
+A    XDAQConfiguration/doc
+A    XDAQConfiguration/doc/html
+A    XDAQConfiguration/doc/html/overview.html
+A    XDAQConfiguration/doc/html/index.html
+A    XDAQConfiguration/Configuration.xml
+A    XDAQConfiguration/ConfigurationNoRU.xml
+A    XDAQConfiguration/TTCciConfiguration.txt
+A    XDAQConfiguration/ConfigurationP5_LTC.xml
+ U   XDAQConfiguration
+Checked out revision 4806.

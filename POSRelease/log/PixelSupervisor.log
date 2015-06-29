@@ -1,0 +1,23 @@
+A    PixelSupervisor/xml
+A    PixelSupervisor/xml/Profile.xml
+A    PixelSupervisor/xml/shortcuts.xml
+A    PixelSupervisor/include
+A    PixelSupervisor/include/PixelSupervisor.h
+A    PixelSupervisor/html
+A    PixelSupervisor/html/pixelsupervisor.gif
+A    PixelSupervisor/html/Experimental.js
+A    PixelSupervisor/spec.template
+A    PixelSupervisor/conf
+A    PixelSupervisor/conf/clientApp.set
+A    PixelSupervisor/doc
+A    PixelSupervisor/doc/html
+A    PixelSupervisor/doc/html/overview.html
+A    PixelSupervisor/doc/html/index.html
+A    PixelSupervisor/src
+A    PixelSupervisor/src/common
+A    PixelSupervisor/src/common/PixelSupervisor.cc
+A    PixelSupervisor/dat
+A    PixelSupervisor/dat/badAliases.dat
+A    PixelSupervisor/Makefile
+ U   PixelSupervisor
+Checked out revision 4806.

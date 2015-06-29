@@ -1,0 +1,30 @@
+A    PixelTTCSupervisor/XDAQConfig.xml
+A    PixelTTCSupervisor/include
+A    PixelTTCSupervisor/include/HTMLFieldElement.hh
+A    PixelTTCSupervisor/include/TTCXDAQBase.hh
+A    PixelTTCSupervisor/include/PixelTTCSupervisorV.hh
+A    PixelTTCSupervisor/include/TTCciXdaqUtils.hh
+A    PixelTTCSupervisor/include/headers.hh
+A    PixelTTCSupervisor/include/HTMLTable.hh
+A    PixelTTCSupervisor/include/PixelTTCSupervisor.hh
+A    PixelTTCSupervisor/INSTALL.txt
+A    PixelTTCSupervisor/conf
+A    PixelTTCSupervisor/conf/clientApp.set
+A    PixelTTCSupervisor/doc
+A    PixelTTCSupervisor/doc/html
+A    PixelTTCSupervisor/doc/html/overview.html
+A    PixelTTCSupervisor/doc/html/index.html
+A    PixelTTCSupervisor/src
+A    PixelTTCSupervisor/src/common
+A    PixelTTCSupervisor/src/common/HTMLTable.cc
+A    PixelTTCSupervisor/src/common/PixelTTCSupervisor.cc
+A    PixelTTCSupervisor/src/common/HTMLFieldElement.cc
+A    PixelTTCSupervisor/src/common/TTCXDAQBase.cc
+A    PixelTTCSupervisor/src/common/PixelTTCSupervisorV.cc
+A    PixelTTCSupervisor/src/common/TTCciXdaqUtils.cc
+A    PixelTTCSupervisor/TTCciConfigurationPSI.txt
+A    PixelTTCSupervisor/TTCciConfiguration.txt
+A    PixelTTCSupervisor/Makefile
+A    PixelTTCSupervisor/XDAQProfile.xml
+ U   PixelTTCSupervisor
+Checked out revision 4806.

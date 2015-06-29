@@ -1,0 +1,35 @@
+A    PixelFEDSupervisor/xml
+A    PixelFEDSupervisor/xml/FEDProfile.xml
+A    PixelFEDSupervisor/include
+A    PixelFEDSupervisor/include/BusAdapterFromTTC.hh
+A    PixelFEDSupervisor/include/PixelFEDSupervisor.h
+A    PixelFEDSupervisor/html
+A    PixelFEDSupervisor/html/PixelFEDSupervisor.bmp
+A    PixelFEDSupervisor/html/ChannelScopeAJAX.js
+A    PixelFEDSupervisor/html/EnableFIFO3.htm
+A    PixelFEDSupervisor/html/Start.htm
+A    PixelFEDSupervisor/html/Configure.htm
+A    PixelFEDSupervisor/html/Head.htm
+A    PixelFEDSupervisor/html/SetPhasesDelays.htm
+A    PixelFEDSupervisor/html/ChannelOffsets.htm
+A    PixelFEDSupervisor/html/FIFO.htm
+A    PixelFEDSupervisor/html/ReloadFirmware.htm
+A    PixelFEDSupervisor/html/ResetFEDs.htm
+A    PixelFEDSupervisor/html/Registers.htm
+A    PixelFEDSupervisor/spec.template
+A    PixelFEDSupervisor/conf
+A    PixelFEDSupervisor/conf/config.xml
+A    PixelFEDSupervisor/conf/glbEd.set
+A    PixelFEDSupervisor/conf/lr.set
+A    PixelFEDSupervisor/conf/clientApp.set
+A    PixelFEDSupervisor/conf/ConfigurationNoRU.xml
+A    PixelFEDSupervisor/doc
+A    PixelFEDSupervisor/doc/html
+A    PixelFEDSupervisor/doc/html/overview.html
+A    PixelFEDSupervisor/doc/html/index.html
+A    PixelFEDSupervisor/src
+A    PixelFEDSupervisor/src/common
+A    PixelFEDSupervisor/src/common/PixelFEDSupervisor.cc
+A    PixelFEDSupervisor/Makefile
+ U   PixelFEDSupervisor
+Checked out revision 4806.
