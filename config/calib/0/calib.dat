@@ -1,0 +1,14 @@
+Mode:  AOHAndFEDChannelMappingTest
+Parameters:
+useSOAP yes
+ScanMin        0
+ScanMax        50
+ScanStepSize   1
+printFEDRawData         yes
+printScan               yes
+Rows:
+Cols:
+VcalHigh
+Repeat: 10
+ToCalibrate:
+all

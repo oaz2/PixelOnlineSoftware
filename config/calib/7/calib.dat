@@ -1,0 +1,14 @@
+Mode:  ROCUBEqualization
+Parameters:
+TargetUB	150
+printFEDRawData  no
+printScan        yes
+Rows:
+Cols:
+VcalHigh
+Scan: VIbias_DAC 15 255 5
+Set: Vcal 100
+Repeat: 17
+ToCalibrate:
+all
+

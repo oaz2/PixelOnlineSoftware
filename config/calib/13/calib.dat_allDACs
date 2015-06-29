@@ -1,0 +1,17 @@
+Mode:  PHRange
+Parameters:
+minPH 75
+maxPH 254
+Rows:
+12
+Cols:
+14 25
+VcalHigh
+Scan: VIbias_PH 155 255 20
+Scan: VOffsetRO  55 255 20
+Scan: VIon      155 255 20
+Scan: VOffsetOp 0 100 20
+Scan: Vcal 25 255 230
+Repeat: 4
+ToCalibrate:
+all

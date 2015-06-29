@@ -1,0 +1,16 @@
+Mode:  PHRange
+Parameters:
+useSOAP yes
+minPH 75
+maxPH 254
+Rows:
+12
+Cols:
+14 25
+VcalHigh
+Scan: VIbias_PH 0 255 15
+Scan: VOffsetOp 0 255 15
+Scan: Vcal 25 255 230
+Repeat: 4
+ToCalibrate:
+all

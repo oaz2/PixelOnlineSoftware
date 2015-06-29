@@ -1,0 +1,18 @@
+Mode:  LinearityVsVsf
+Parameters:
+useSOAP yes
+absoluteNonlinearityThreshold yes
+nonlinearityThreshold 1.4
+useIntegrated2ndOver1stDerivative no
+integralMinVcal 7
+integralMaxVcal 57
+Rows:
+66
+Cols:
+47 20
+VcalHigh
+Scan: Vcal  0 255 5
+Scan: Vsf   0 255 15 mix
+Repeat: 8
+ToCalibrate:
+all

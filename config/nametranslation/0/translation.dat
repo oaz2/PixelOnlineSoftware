@@ -1,0 +1,19 @@
+# name                          TBMchannel  FEC mfec mfecchannel hubaddress portadd rocid    FED channel   roc#
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC0      A       1   8        1          4        1       0        1    36        0
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC1      A       1   8        1          4        1       1        1    36        1
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC2      A       1   8        1          4        1       2        1    36        2
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC3      A       1   8        1          4        1       3        1    36        3
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC4      A       1   8        1          4        1       4        1    36        4
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC5      A       1   8        1          4        1       5        1    36        5
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC6      A       1   8        1          4        1       6        1    36        6
+FPix_BpI_D1_BLD1_PNL2_PLQ2_ROC7      A       1   8        1          4        1       7        1    36        7
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC0      A       1   8        1          5        1       0        1    35        0
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC1      A       1   8        1          5        1       1        1    35        1
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC2      A       1   8        1          5        1       2        1    35        2
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC3      A       1   8        1          5        1       3        1    35        3
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC4      A       1   8        1          5        1       4        1    35        4
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC5      A       1   8        1          5        1       5        1    35        5
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC6      A       1   8        1          5        1       6        1    35        6
+FPix_BpI_D1_BLD2_PNL2_PLQ2_ROC7      A       1   8        1          5        1       7        1    35        7
+
+

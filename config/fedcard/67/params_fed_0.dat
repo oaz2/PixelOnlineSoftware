@@ -1,0 +1,626 @@
+FED Base address                         :0x0
+FEDID Number                             :0x0
+Number of ROCs Chnl 1:0
+Number of ROCs Chnl 2:0
+Number of ROCs Chnl 3:0
+Number of ROCs Chnl 4:0
+Number of ROCs Chnl 5:0
+Number of ROCs Chnl 6:0
+Number of ROCs Chnl 7:0
+Number of ROCs Chnl 8:0
+Number of ROCs Chnl 9:0
+Number of ROCs Chnl 10:0
+Number of ROCs Chnl 11:0
+Number of ROCs Chnl 12:0
+Number of ROCs Chnl 13:0
+Number of ROCs Chnl 14:0
+Number of ROCs Chnl 15:0
+Number of ROCs Chnl 16:0
+Number of ROCs Chnl 17:0
+Number of ROCs Chnl 18:0
+Number of ROCs Chnl 19:0
+Number of ROCs Chnl 20:0
+Number of ROCs Chnl 21:0
+Number of ROCs Chnl 22:0
+Number of ROCs Chnl 23:0
+Number of ROCs Chnl 24:0
+Number of ROCs Chnl 25:0
+Number of ROCs Chnl 26:0
+Number of ROCs Chnl 27:0
+Number of ROCs Chnl 28:0
+Number of ROCs Chnl 29:0
+Number of ROCs Chnl 30:0
+Number of ROCs Chnl 31:0
+Number of ROCs Chnl 32:0
+Number of ROCs Chnl 33:0
+Number of ROCs Chnl 34:0
+Number of ROCs Chnl 35:0
+Number of ROCs Chnl 36:0
+Optical reciever 1  Capacitor Adjust(0-3):0
+Optical reciever 2  Capacitor Adjust(0-3):0
+Optical reciever 3  Capacitor Adjust(0-3):0
+Optical reciever 1  Input Offset (0-15)  :14
+Optical reciever 2  Input Offset (0-15)  :0
+Optical reciever 3  Input Offset (0-15)  :0
+Optical reciever 1 Output Offset (0-3)   :0
+Optical reciever 2 Output Offset (0-3)   :0
+Optical reciever 3 Output Offset (0-3)   :0
+Offset DAC channel 1:0
+Offset DAC channel 2:0
+Offset DAC channel 3:0
+Offset DAC channel 4:0
+Offset DAC channel 5:0
+Offset DAC channel 6:0
+Offset DAC channel 7:0
+Offset DAC channel 8:0
+Offset DAC channel 9:0
+Offset DAC channel 10:0
+Offset DAC channel 11:0
+Offset DAC channel 12:77
+Offset DAC channel 13:0
+Offset DAC channel 14:0
+Offset DAC channel 15:0
+Offset DAC channel 16:0
+Offset DAC channel 17:0
+Offset DAC channel 18:0
+Offset DAC channel 19:0
+Offset DAC channel 20:0
+Offset DAC channel 21:0
+Offset DAC channel 22:0
+Offset DAC channel 23:0
+Offset DAC channel 24:0
+Offset DAC channel 25:0
+Offset DAC channel 26:0
+Offset DAC channel 27:0
+Offset DAC channel 28:0
+Offset DAC channel 29:0
+Offset DAC channel 30:0
+Offset DAC channel 31:0
+Offset DAC channel 32:0
+Offset DAC channel 33:0
+Offset DAC channel 34:0
+Offset DAC channel 35:0
+Offset DAC channel 36:0
+Clock Phase Bits ch   1-9:0x0
+Clock Phase Bits ch 10-18:0x0
+Clock Phase Bits ch 19-27:0x0
+Clock Phase Bits ch 28-36:0x0
+Black HiThold ch 1:0 
+Black LoThold ch 1:0 
+ULblack Thold ch 1:0 
+Black HiThold ch 2:0 
+Black LoThold ch 2:0 
+ULblack Thold ch 2:0 
+Black HiThold ch 3:0 
+Black LoThold ch 3:0 
+ULblack Thold ch 3:0 
+Black HiThold ch 4:0 
+Black LoThold ch 4:0 
+ULblack Thold ch 4:0 
+Black HiThold ch 5:0 
+Black LoThold ch 5:0 
+ULblack Thold ch 5:0 
+Black HiThold ch 6:0 
+Black LoThold ch 6:0 
+ULblack Thold ch 6:0 
+Black HiThold ch 7:0 
+Black LoThold ch 7:0 
+ULblack Thold ch 7:0 
+Black HiThold ch 8:0 
+Black LoThold ch 8:0 
+ULblack Thold ch 8:0 
+Black HiThold ch 9:0 
+Black LoThold ch 9:0 
+ULblack Thold ch 9:0 
+Black HiThold ch 10:0 
+Black LoThold ch 10:0 
+ULblack Thold ch 10:0 
+Black HiThold ch 11:0 
+Black LoThold ch 11:0 
+ULblack Thold ch 11:0 
+Black HiThold ch 12:0 
+Black LoThold ch 12:0 
+ULblack Thold ch 12:0 
+Black HiThold ch 13:0 
+Black LoThold ch 13:0 
+ULblack Thold ch 13:0 
+Black HiThold ch 14:0 
+Black LoThold ch 14:0 
+ULblack Thold ch 14:0 
+Black HiThold ch 15:0 
+Black LoThold ch 15:0 
+ULblack Thold ch 15:0 
+Black HiThold ch 16:0 
+Black LoThold ch 16:0 
+ULblack Thold ch 16:0 
+Black HiThold ch 17:0 
+Black LoThold ch 17:0 
+ULblack Thold ch 17:0 
+Black HiThold ch 18:0 
+Black LoThold ch 18:0 
+ULblack Thold ch 18:0 
+Black HiThold ch 19:0 
+Black LoThold ch 19:0 
+ULblack Thold ch 19:0 
+Black HiThold ch 20:0 
+Black LoThold ch 20:0 
+ULblack Thold ch 20:0 
+Black HiThold ch 21:0 
+Black LoThold ch 21:0 
+ULblack Thold ch 21:0 
+Black HiThold ch 22:0 
+Black LoThold ch 22:0 
+ULblack Thold ch 22:0 
+Black HiThold ch 23:0 
+Black LoThold ch 23:0 
+ULblack Thold ch 23:0 
+Black HiThold ch 24:0 
+Black LoThold ch 24:0 
+ULblack Thold ch 24:0 
+Black HiThold ch 25:0 
+Black LoThold ch 25:0 
+ULblack Thold ch 25:0 
+Black HiThold ch 26:0 
+Black LoThold ch 26:0 
+ULblack Thold ch 26:0 
+Black HiThold ch 27:0 
+Black LoThold ch 27:0 
+ULblack Thold ch 27:0 
+Black HiThold ch 28:0 
+Black LoThold ch 28:0 
+ULblack Thold ch 28:0 
+Black HiThold ch 29:0 
+Black LoThold ch 29:0 
+ULblack Thold ch 29:0 
+Black HiThold ch 30:0 
+Black LoThold ch 30:0 
+ULblack Thold ch 30:0 
+Black HiThold ch 31:0 
+Black LoThold ch 31:0 
+ULblack Thold ch 31:0 
+Black HiThold ch 32:0 
+Black LoThold ch 32:0 
+ULblack Thold ch 32:0 
+Black HiThold ch 33:0 
+Black LoThold ch 33:0 
+ULblack Thold ch 33:0 
+Black HiThold ch 34:0 
+Black LoThold ch 34:0 
+ULblack Thold ch 34:0 
+Black HiThold ch 35:0 
+Black LoThold ch 35:0 
+ULblack Thold ch 35:0 
+Black HiThold ch 36:0 
+Black LoThold ch 36:0 
+ULblack Thold ch 36:0 
+Delay channel 1(0-15):0
+Delay channel 2(0-15):0
+Delay channel 3(0-15):0
+Delay channel 4(0-15):0
+Delay channel 5(0-15):0
+Delay channel 6(0-15):0
+Delay channel 7(0-15):0
+Delay channel 8(0-15):0
+Delay channel 9(0-15):0
+Delay channel 10(0-15):0
+Delay channel 11(0-15):0
+Delay channel 12(0-15):0
+Delay channel 13(0-15):0
+Delay channel 14(0-15):0
+Delay channel 15(0-15):0
+Delay channel 16(0-15):0
+Delay channel 17(0-15):0
+Delay channel 18(0-15):0
+Delay channel 19(0-15):0
+Delay channel 20(0-15):0
+Delay channel 21(0-15):0
+Delay channel 22(0-15):0
+Delay channel 23(0-15):0
+Delay channel 24(0-15):0
+Delay channel 25(0-15):0
+Delay channel 26(0-15):0
+Delay channel 27(0-15):0
+Delay channel 28(0-15):0
+Delay channel 29(0-15):0
+Delay channel 30(0-15):0
+Delay channel 31(0-15):0
+Delay channel 32(0-15):0
+Delay channel 33(0-15):0
+Delay channel 34(0-15):0
+Delay channel 35(0-15):0
+Delay channel 36(0-15):0
+TBM level 0 Channel  1:0
+TBM level 1 Channel  1:0
+TBM level 2 Channel  1:0
+TBM level 3 Channel  1:0
+TBM level 4 Channel  1:0
+TRLR level 0 Channel 1:0
+TRLR level 1 Channel 1:0
+TRLR level 2 Channel 1:0
+TRLR level 3 Channel 1:0
+TRLR level 4 Channel 1:0
+TBM level 0 Channel  2:0
+TBM level 1 Channel  2:0
+TBM level 2 Channel  2:0
+TBM level 3 Channel  2:0
+TBM level 4 Channel  2:0
+TRLR level 0 Channel 2:0
+TRLR level 1 Channel 2:0
+TRLR level 2 Channel 2:0
+TRLR level 3 Channel 2:0
+TRLR level 4 Channel 2:0
+TBM level 0 Channel  3:0
+TBM level 1 Channel  3:0
+TBM level 2 Channel  3:0
+TBM level 3 Channel  3:0
+TBM level 4 Channel  3:0
+TRLR level 0 Channel 3:0
+TRLR level 1 Channel 3:0
+TRLR level 2 Channel 3:0
+TRLR level 3 Channel 3:0
+TRLR level 4 Channel 3:0
+TBM level 0 Channel  4:0
+TBM level 1 Channel  4:0
+TBM level 2 Channel  4:0
+TBM level 3 Channel  4:0
+TBM level 4 Channel  4:0
+TRLR level 0 Channel 4:0
+TRLR level 1 Channel 4:0
+TRLR level 2 Channel 4:0
+TRLR level 3 Channel 4:0
+TRLR level 4 Channel 4:0
+TBM level 0 Channel  5:0
+TBM level 1 Channel  5:0
+TBM level 2 Channel  5:0
+TBM level 3 Channel  5:0
+TBM level 4 Channel  5:0
+TRLR level 0 Channel 5:0
+TRLR level 1 Channel 5:0
+TRLR level 2 Channel 5:0
+TRLR level 3 Channel 5:0
+TRLR level 4 Channel 5:0
+TBM level 0 Channel  6:0
+TBM level 1 Channel  6:0
+TBM level 2 Channel  6:0
+TBM level 3 Channel  6:0
+TBM level 4 Channel  6:0
+TRLR level 0 Channel 6:0
+TRLR level 1 Channel 6:0
+TRLR level 2 Channel 6:0
+TRLR level 3 Channel 6:0
+TRLR level 4 Channel 6:0
+TBM level 0 Channel  7:0
+TBM level 1 Channel  7:0
+TBM level 2 Channel  7:0
+TBM level 3 Channel  7:0
+TBM level 4 Channel  7:0
+TRLR level 0 Channel 7:0
+TRLR level 1 Channel 7:0
+TRLR level 2 Channel 7:0
+TRLR level 3 Channel 7:0
+TRLR level 4 Channel 7:0
+TBM level 0 Channel  8:0
+TBM level 1 Channel  8:0
+TBM level 2 Channel  8:0
+TBM level 3 Channel  8:0
+TBM level 4 Channel  8:0
+TRLR level 0 Channel 8:0
+TRLR level 1 Channel 8:0
+TRLR level 2 Channel 8:0
+TRLR level 3 Channel 8:0
+TRLR level 4 Channel 8:0
+TBM level 0 Channel  9:0
+TBM level 1 Channel  9:0
+TBM level 2 Channel  9:0
+TBM level 3 Channel  9:0
+TBM level 4 Channel  9:0
+TRLR level 0 Channel 9:0
+TRLR level 1 Channel 9:0
+TRLR level 2 Channel 9:0
+TRLR level 3 Channel 9:0
+TRLR level 4 Channel 9:0
+TBM level 0 Channel  10:0
+TBM level 1 Channel  10:0
+TBM level 2 Channel  10:0
+TBM level 3 Channel  10:0
+TBM level 4 Channel  10:0
+TRLR level 0 Channel 10:0
+TRLR level 1 Channel 10:0
+TRLR level 2 Channel 10:0
+TRLR level 3 Channel 10:0
+TRLR level 4 Channel 10:0
+TBM level 0 Channel  11:0
+TBM level 1 Channel  11:0
+TBM level 2 Channel  11:0
+TBM level 3 Channel  11:0
+TBM level 4 Channel  11:0
+TRLR level 0 Channel 11:0
+TRLR level 1 Channel 11:0
+TRLR level 2 Channel 11:0
+TRLR level 3 Channel 11:0
+TRLR level 4 Channel 11:0
+TBM level 0 Channel  12:0
+TBM level 1 Channel  12:0
+TBM level 2 Channel  12:0
+TBM level 3 Channel  12:0
+TBM level 4 Channel  12:0
+TRLR level 0 Channel 12:0
+TRLR level 1 Channel 12:0
+TRLR level 2 Channel 12:0
+TRLR level 3 Channel 12:0
+TRLR level 4 Channel 12:0
+TBM level 0 Channel  13:0
+TBM level 1 Channel  13:0
+TBM level 2 Channel  13:0
+TBM level 3 Channel  13:0
+TBM level 4 Channel  13:0
+TRLR level 0 Channel 13:0
+TRLR level 1 Channel 13:0
+TRLR level 2 Channel 13:0
+TRLR level 3 Channel 13:0
+TRLR level 4 Channel 13:0
+TBM level 0 Channel  14:0
+TBM level 1 Channel  14:0
+TBM level 2 Channel  14:0
+TBM level 3 Channel  14:0
+TBM level 4 Channel  14:0
+TRLR level 0 Channel 14:0
+TRLR level 1 Channel 14:0
+TRLR level 2 Channel 14:0
+TRLR level 3 Channel 14:0
+TRLR level 4 Channel 14:0
+TBM level 0 Channel  15:0
+TBM level 1 Channel  15:0
+TBM level 2 Channel  15:0
+TBM level 3 Channel  15:0
+TBM level 4 Channel  15:0
+TRLR level 0 Channel 15:0
+TRLR level 1 Channel 15:0
+TRLR level 2 Channel 15:0
+TRLR level 3 Channel 15:0
+TRLR level 4 Channel 15:0
+TBM level 0 Channel  16:0
+TBM level 1 Channel  16:0
+TBM level 2 Channel  16:0
+TBM level 3 Channel  16:0
+TBM level 4 Channel  16:0
+TRLR level 0 Channel 16:0
+TRLR level 1 Channel 16:0
+TRLR level 2 Channel 16:0
+TRLR level 3 Channel 16:0
+TRLR level 4 Channel 16:0
+TBM level 0 Channel  17:0
+TBM level 1 Channel  17:0
+TBM level 2 Channel  17:0
+TBM level 3 Channel  17:0
+TBM level 4 Channel  17:0
+TRLR level 0 Channel 17:0
+TRLR level 1 Channel 17:0
+TRLR level 2 Channel 17:0
+TRLR level 3 Channel 17:0
+TRLR level 4 Channel 17:0
+TBM level 0 Channel  18:0
+TBM level 1 Channel  18:0
+TBM level 2 Channel  18:0
+TBM level 3 Channel  18:0
+TBM level 4 Channel  18:0
+TRLR level 0 Channel 18:0
+TRLR level 1 Channel 18:0
+TRLR level 2 Channel 18:0
+TRLR level 3 Channel 18:0
+TRLR level 4 Channel 18:0
+TBM level 0 Channel  19:0
+TBM level 1 Channel  19:0
+TBM level 2 Channel  19:0
+TBM level 3 Channel  19:0
+TBM level 4 Channel  19:0
+TRLR level 0 Channel 19:0
+TRLR level 1 Channel 19:0
+TRLR level 2 Channel 19:0
+TRLR level 3 Channel 19:0
+TRLR level 4 Channel 19:0
+TBM level 0 Channel  20:0
+TBM level 1 Channel  20:0
+TBM level 2 Channel  20:0
+TBM level 3 Channel  20:0
+TBM level 4 Channel  20:0
+TRLR level 0 Channel 20:0
+TRLR level 1 Channel 20:0
+TRLR level 2 Channel 20:0
+TRLR level 3 Channel 20:0
+TRLR level 4 Channel 20:0
+TBM level 0 Channel  21:0
+TBM level 1 Channel  21:0
+TBM level 2 Channel  21:0
+TBM level 3 Channel  21:0
+TBM level 4 Channel  21:0
+TRLR level 0 Channel 21:0
+TRLR level 1 Channel 21:0
+TRLR level 2 Channel 21:0
+TRLR level 3 Channel 21:0
+TRLR level 4 Channel 21:0
+TBM level 0 Channel  22:0
+TBM level 1 Channel  22:0
+TBM level 2 Channel  22:0
+TBM level 3 Channel  22:0
+TBM level 4 Channel  22:0
+TRLR level 0 Channel 22:0
+TRLR level 1 Channel 22:0
+TRLR level 2 Channel 22:0
+TRLR level 3 Channel 22:0
+TRLR level 4 Channel 22:0
+TBM level 0 Channel  23:0
+TBM level 1 Channel  23:0
+TBM level 2 Channel  23:0
+TBM level 3 Channel  23:0
+TBM level 4 Channel  23:0
+TRLR level 0 Channel 23:0
+TRLR level 1 Channel 23:0
+TRLR level 2 Channel 23:0
+TRLR level 3 Channel 23:0
+TRLR level 4 Channel 23:0
+TBM level 0 Channel  24:0
+TBM level 1 Channel  24:0
+TBM level 2 Channel  24:0
+TBM level 3 Channel  24:0
+TBM level 4 Channel  24:0
+TRLR level 0 Channel 24:0
+TRLR level 1 Channel 24:0
+TRLR level 2 Channel 24:0
+TRLR level 3 Channel 24:0
+TRLR level 4 Channel 24:0
+TBM level 0 Channel  25:0
+TBM level 1 Channel  25:0
+TBM level 2 Channel  25:0
+TBM level 3 Channel  25:0
+TBM level 4 Channel  25:0
+TRLR level 0 Channel 25:0
+TRLR level 1 Channel 25:0
+TRLR level 2 Channel 25:0
+TRLR level 3 Channel 25:0
+TRLR level 4 Channel 25:0
+TBM level 0 Channel  26:0
+TBM level 1 Channel  26:0
+TBM level 2 Channel  26:0
+TBM level 3 Channel  26:0
+TBM level 4 Channel  26:0
+TRLR level 0 Channel 26:0
+TRLR level 1 Channel 26:0
+TRLR level 2 Channel 26:0
+TRLR level 3 Channel 26:0
+TRLR level 4 Channel 26:0
+TBM level 0 Channel  27:0
+TBM level 1 Channel  27:0
+TBM level 2 Channel  27:0
+TBM level 3 Channel  27:0
+TBM level 4 Channel  27:0
+TRLR level 0 Channel 27:0
+TRLR level 1 Channel 27:0
+TRLR level 2 Channel 27:0
+TRLR level 3 Channel 27:0
+TRLR level 4 Channel 27:0
+TBM level 0 Channel  28:0
+TBM level 1 Channel  28:0
+TBM level 2 Channel  28:0
+TBM level 3 Channel  28:0
+TBM level 4 Channel  28:0
+TRLR level 0 Channel 28:0
+TRLR level 1 Channel 28:0
+TRLR level 2 Channel 28:0
+TRLR level 3 Channel 28:0
+TRLR level 4 Channel 28:0
+TBM level 0 Channel  29:0
+TBM level 1 Channel  29:0
+TBM level 2 Channel  29:0
+TBM level 3 Channel  29:0
+TBM level 4 Channel  29:0
+TRLR level 0 Channel 29:0
+TRLR level 1 Channel 29:0
+TRLR level 2 Channel 29:0
+TRLR level 3 Channel 29:0
+TRLR level 4 Channel 29:0
+TBM level 0 Channel  30:0
+TBM level 1 Channel  30:0
+TBM level 2 Channel  30:0
+TBM level 3 Channel  30:0
+TBM level 4 Channel  30:0
+TRLR level 0 Channel 30:0
+TRLR level 1 Channel 30:0
+TRLR level 2 Channel 30:0
+TRLR level 3 Channel 30:0
+TRLR level 4 Channel 30:0
+TBM level 0 Channel  31:0
+TBM level 1 Channel  31:0
+TBM level 2 Channel  31:0
+TBM level 3 Channel  31:0
+TBM level 4 Channel  31:0
+TRLR level 0 Channel 31:0
+TRLR level 1 Channel 31:0
+TRLR level 2 Channel 31:0
+TRLR level 3 Channel 31:0
+TRLR level 4 Channel 31:0
+TBM level 0 Channel  32:0
+TBM level 1 Channel  32:0
+TBM level 2 Channel  32:0
+TBM level 3 Channel  32:0
+TBM level 4 Channel  32:0
+TRLR level 0 Channel 32:0
+TRLR level 1 Channel 32:0
+TRLR level 2 Channel 32:0
+TRLR level 3 Channel 32:0
+TRLR level 4 Channel 32:0
+TBM level 0 Channel  33:0
+TBM level 1 Channel  33:0
+TBM level 2 Channel  33:0
+TBM level 3 Channel  33:0
+TBM level 4 Channel  33:0
+TRLR level 0 Channel 33:0
+TRLR level 1 Channel 33:0
+TRLR level 2 Channel 33:0
+TRLR level 3 Channel 33:0
+TRLR level 4 Channel 33:0
+TBM level 0 Channel  34:0
+TBM level 1 Channel  34:0
+TBM level 2 Channel  34:0
+TBM level 3 Channel  34:0
+TBM level 4 Channel  34:0
+TRLR level 0 Channel 34:0
+TRLR level 1 Channel 34:0
+TRLR level 2 Channel 34:0
+TRLR level 3 Channel 34:0
+TRLR level 4 Channel 34:0
+TBM level 0 Channel  35:0
+TBM level 1 Channel  35:0
+TBM level 2 Channel  35:0
+TBM level 3 Channel  35:0
+TBM level 4 Channel  35:0
+TRLR level 0 Channel 35:0
+TRLR level 1 Channel 35:0
+TRLR level 2 Channel 35:0
+TRLR level 3 Channel 35:0
+TRLR level 4 Channel 35:0
+TBM level 0 Channel  36:0
+TBM level 1 Channel  36:0
+TBM level 2 Channel  36:0
+TBM level 3 Channel  36:0
+TBM level 4 Channel  36:0
+TRLR level 0 Channel 36:0
+TRLR level 1 Channel 36:0
+TRLR level 2 Channel 36:0
+TRLR level 3 Channel 36:0
+TRLR level 4 Channel 36:0
+Channel Enbable bits chnls 1-9  (on = 0):0xe9
+Channel Enbable bits chnls 10-18(on = 0):0x9e22b8b8
+Channel Enbable bits chnls 19-27(on = 0):0x9e156540
+Channel Enbable bits chnls 28-36(on = 0):0xffffffff
+TTCrx Coarse Delay Register 2:0
+TTCrc      ClkDes2 Register 3:0x0
+TTCrc Fine Dlay ClkDes2 Reg 1:0
+Center Chip Control Reg:0x9a1c75c
+Initial Slink DAQ mode:0
+Channel ADC Gain bits chnls  1-12(1Vpp = 0):0x0
+Channel ADC Gain bits chnls 13-20(1Vpp = 0):0x0
+Channel ADC Gain bits chnls 21-28(1Vpp = 0):0x0
+Channel ADC Gain bits chnls 29-36(1Vpp = 0):0x0
+Channel Baseline Enbable chnls 1-9  (on = (0x1ff<<16)+):0x9a1c12c
+Channel Baseline Enbable chnls 10-18(on = (0x1ff<<16)+):0x0
+Channel Baseline Enbable chnls 19-27(on = (0x1ff<<16)+):0x9a1c744
+Channel Baseline Enbable chnls 28-36(on = (0x1ff<<16)+):0xb
+TBM trailer mask chnls 1-9  (0xff = all masked):0x0
+TBM trailer mask chnls 10-18(0xff = all masked):0x0
+TBM trailer mask chnls 19-27(0xff = all masked):0x0
+TBM trailer mask chnls 28-36(0xff = all masked):0x0
+Private 8 bit word chnls 1-9  :0x0
+Private 8 bit word chnls 10-18:0x0
+Private 8 bit word chnls 19-27:0x0
+Private 8 bit word chnls 28-36:0x0
+Special Random testDAC mode (on = 0x1, off=0x0):0x0
+Number of Consecutive (max 1023) Out of Syncs till TTs OOS set:1
+Number of Consecutive (max 1023) Empty events till TTs ERR set:1
+N Fifo-1 almost full level,sets TTs BUSY (max 1023):1
+NC Fifo-1 almost full level,sets TTs BUSY (max 1023):1
+SC Fifo-1 almost full level,sets TTs BUSY (max 1023):1
+S Fifo-1 almost full level,sets TTs BUSY (max 1023):1
+Fifo-3 almost full level,sets TTs WARN (max 8191):1
+FED Master delay 0=0,1=32,2=48,3=64:0
+Params FED file check word:60508

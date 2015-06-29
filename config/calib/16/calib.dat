@@ -1,0 +1,14 @@
+Mode: SCurve
+Rows:
+1 41 |
+26 66 
+Cols:
+3 29 |
+23 49 
+VcalLow:
+50 160 1
+Repeat:
+10
+ToCalibrate:
+all
+
