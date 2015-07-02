@@ -1,13 +1,16 @@
 /* PixelFECInterface.cc - This is the implementation of the PixelFECInterface
    doroshenko@physics.rutgers.edu and stone@physics.rutgers.edu 5-11-07
 */
-
+#include <map>
+#include <iterator>
+#include <string>
+#include <vector>
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
 #include <sstream>
 #include <cstdlib>
-
+#include "CalibFormats/SiPixelObjects/interface/PixelDACNames.h"
 /* comment out next line to turn off block transfer */
 #define BLOCKTRANSFER
 
@@ -2631,11 +2634,17 @@ int PixelFECInterface::progalldacs(int mfec, int fecchannel,
 //---------------------------------------------------------------------------------
 // Use single or buffered commands
 // Extend to  buffered commands
-void PixelFECInterface::setAllDAC(const PixelHdwAddress& theROC,
-                                  const std::vector<unsigned int>& dacs,
-				  const bool buffermode) {
-
-  assert(dacs.size()==29);
+/*void PixelFECInterface::setAllDAC(const PixelHdwAddress& theROC,
+                                  std::map<std::string,std::vector<unsigned int> >& dacs, const bool buffermode, const bool ROCType) {
+  cout << "Begin setAllDAC " << endl;
+  if(ROCType == true){
+	cout << "We are using digital ROCS!";
+	assert(dacs.size()==20);
+  }
+  else{
+	cout << "We are using analog ROCS!";
+	assert(dacs.size()==29);
+  }
 
   //std::cout << "In PixelFECInterface::setAllDAC "<<theROC.mfec()<<" "<<theROC.mfecchannel()<<" "
   //        <<theROC.hubaddress()<<" "<<theROC.portaddress()<<" "<<theROC.rocid()<<" "<<dacs.size()
@@ -2658,22 +2667,24 @@ void PixelFECInterface::setAllDAC(const PixelHdwAddress& theROC,
 	  theROC.hubaddress(),
 	  theROC.portaddress(),
 	  theROC.rocid(),
-	  253,
-	  dacs[28],buffermode);
-
-  // Program the 27 DACs
-  for (unsigned int dacaddress=0;dacaddress<27;dacaddress++){
-    //int ret=
-    //std::cout<<(dacaddress+1)<<" "<<dacs[dacaddress]<<" ";
-    progdac(mfec,
-            mfecchannel,
-            theROC.hubaddress(),
-            theROC.portaddress(),
-            theROC.rocid(),
-            dacaddress+1,
-            dacs[dacaddress],buffermode);
-  }
-
+	  dacs[k_DACName_ChipContReg][1],
+	  dacs[k_DACName_ChipContReg][0],buffermode);
+  
+  //make the iterator
+  for (auto it = dacs.begin(); it != dacs.end(); ++it){
+	std::string stmp = it->first;
+	std::vector<unsigned int> vtmp = it->second;
+	if (stmp != k_DACName_ChipContReg && stmp != k_DACName_WBC){
+		 progdac(mfec,
+            		mfecchannel,
+            		theROC.hubaddress(),
+            		theROC.portaddress(),
+            		theROC.rocid(),
+            		vtmp[1],
+            		vtmp[0],buffermode);
+	}
+  }	 
+	
   // Program the WBC
   //std::cout<<std::endl<<" Program WBC "<<dacs[27]<<std::endl;
   progdac(mfec,
@@ -2682,11 +2693,12 @@ void PixelFECInterface::setAllDAC(const PixelHdwAddress& theROC,
 	  theROC.portaddress(),
 	  theROC.rocid(),
 	  254,
-	  dacs[27],buffermode);
+	  (dacs[k_DACName_WBC])[0],buffermode);
 
-
+  cout << "End setAllDAC" << endl;
 
 }
+*/
 //----------------------------------------------------------------------------------------------
 // Program all pixels in a ROC using single commands.
 void PixelFECInterface::setMaskAndTrimAll(const PixelHdwAddress& theROC,

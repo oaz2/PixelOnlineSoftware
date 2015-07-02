@@ -51,8 +51,8 @@ namespace pos{
     void writeXML( std::ofstream *out) const;
     void writeXMLTrailer( std::ofstream *out) const {;}
 
-    void getDACs(std::vector<unsigned int>& dacs) const;
-    void getDACs(std::map<std::string, unsigned int>& dacs) const;
+    //void getDACs(std::vector<unsigned int>& dacs) const;
+    void getDACs(std::map<std::string,std::vector<unsigned int>>& dacs) const;
 
 
     void setDAC(unsigned int dacaddress, unsigned int dacvalue);
@@ -65,6 +65,7 @@ namespace pos{
     void setDac(std::string dacName, int value);
 
     unsigned int getDac(std::string dacName) const;
+    //static unsigned int getDACAddress(const std::string DACName);
 
     bits8 getVleak() {return Vleak_;}
     void setVleak(bits8 vleak) {Vleak_=vleak;}

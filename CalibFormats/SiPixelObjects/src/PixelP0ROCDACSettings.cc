@@ -18,7 +18,7 @@ using namespace std;
 
 PixelP0ROCDACSettings::PixelP0ROCDACSettings(){}
 
-
+/*
 void PixelP0ROCDACSettings::getDACs(vector<unsigned int>& dacs) const
 {
     dacs.clear();
@@ -52,40 +52,40 @@ void PixelP0ROCDACSettings::getDACs(vector<unsigned int>& dacs) const
     dacs.push_back(WBC_);
     dacs.push_back(ChipContReg_);
 }
-
+*/
 // Added by Dario
-void PixelP0ROCDACSettings::getDACs(std::map<std::string, unsigned int>& dacs) const
+void PixelP0ROCDACSettings::getDACs(std::map<std::string, std::vector<unsigned int> >& dacs) const
 {
     dacs.clear();
-    dacs[k_DACName_Vdd        ] = Vdd_        ;
-    dacs[k_DACName_Vana       ] = Vana_       ;     
-    dacs[k_DACName_Vsf        ] = Vsf_        ;      
-    dacs[k_DACName_Vcomp      ] = Vcomp_      ;      
-    dacs[k_DACName_Vleak      ] = Vleak_      ;      
-    dacs[k_DACName_VrgPr      ] = VrgPr_      ;      
-    dacs[k_DACName_VwllPr     ] = VwllPr_     ;     
-    dacs[k_DACName_VrgSh      ] = VrgSh_      ;      
-    dacs[k_DACName_VwllSh     ] = VwllSh_     ;     
-    dacs[k_DACName_VHldDel    ] = VHldDel_    ;    
-    dacs[k_DACName_Vtrim      ] = Vtrim_      ;      
-    dacs[k_DACName_VcThr      ] = VcThr_      ;      
-    dacs[k_DACName_VIbias_bus ] = VIbias_bus_ ;
-    dacs[k_DACName_VIbias_sf  ] = VIbias_sf_  ; 
-    dacs[k_DACName_VOffsetOp  ] = VOffsetOp_  ; 
-    dacs[k_DACName_VbiasOp    ] = VbiasOp_    ;    
-    dacs[k_DACName_VOffsetRO  ] = VOffsetRO_  ; 
-    dacs[k_DACName_VIon       ] = VIon_       ;       
-    dacs[k_DACName_VIbias_PH  ] = VIbias_PH_  ; 
-    dacs[k_DACName_VIbias_DAC ] = VIbias_DAC_ ;
-    dacs[k_DACName_VIbias_roc ] = VIbias_roc_ ;
-    dacs[k_DACName_VIColOr    ] = VIColOr_    ;    
-    dacs[k_DACName_Vnpix      ] = Vnpix_      ;      
-    dacs[k_DACName_VsumCol    ] = VsumCol_    ;    
-    dacs[k_DACName_Vcal       ] = Vcal_       ;       
-    dacs[k_DACName_CalDel     ] = CalDel_     ;     
-    dacs[k_DACName_TempRange  ] = TempRange_  ; 
-    dacs[k_DACName_WBC        ] = WBC_        ;
-    dacs[k_DACName_ChipContReg] = ChipContReg_;
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vdd,		make_vector(Vdd_, k_DACAddress_Vdd)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vana,		make_vector(Vana_,k_DACAddress_Vana)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vsf,		make_vector(Vsf_, k_DACAddress_Vsf)));      
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vcomp,		make_vector(Vcomp_, k_DACAddress_Vcomp)));      
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vleak,		make_vector(Vleak_, k_DACAddress_Vleak)));      
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VrgPr,		make_vector(VrgPr_, k_DACAddress_VrgPr)));      
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VwllPr,		make_vector(VwllPr_, k_DACAddress_VwllPr)));     
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VrgSh,		make_vector(VrgSh_, k_DACAddress_VrgSh)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VwllSh,		make_vector(VwllSh_, k_DACAddress_VwllSh)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VHldDel,		make_vector(VHldDel_, k_DACAddress_VHldDel)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vtrim,		make_vector(Vtrim_, k_DACAddress_Vtrim)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VcThr,		make_vector(VcThr_, k_DACAddress_VcThr)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VIbias_bus, 	make_vector(VIbias_bus_, k_DACAddress_VIbias_bus)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VIbias_sf, 	make_vector(VIbias_sf_, k_DACAddress_VIbias_sf)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VOffsetOp, 	make_vector(VOffsetOp_, k_DACAddress_VOffsetOp)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VbiasOp, 	make_vector(VbiasOp_, k_DACAddress_VbiasOp)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VOffsetRO, 	make_vector(VOffsetRO_, k_DACAddress_VOffsetRO)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VIon, 		make_vector(VIon_, k_DACAddress_VIon)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VIbias_PH, 	make_vector(VIbias_PH_, k_DACAddress_VIbias_PH)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VIbias_DAC, 	make_vector(VIbias_DAC_, k_DACAddress_VIbias_DAC)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VIbias_roc, 	make_vector(VIbias_roc_, k_DACAddress_VIbias_roc)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VIColOr,		make_vector(VIColOr_, k_DACAddress_VIColOr)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vnpix,		make_vector(Vnpix_, k_DACAddress_Vnpix)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_VsumCol,		make_vector(VsumCol_, k_DACAddress_VsumCol)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_Vcal,		make_vector(Vcal_, k_DACAddress_Vcal)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_CalDel,		make_vector(CalDel_, k_DACAddress_CalDel)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_TempRange,	make_vector(TempRange_, k_DACAddress_TempRange)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_WBC,		make_vector(WBC_, k_DACAddress_WBC)));
+    dacs.insert(pair<string, vector<unsigned int> > (k_DACName_ChipContReg,	make_vector(ChipContReg_, k_DACAddress_ChipContReg)));
 }
 
 // Added by Dario
@@ -508,7 +508,100 @@ int PixelP0ROCDACSettings::read(std::istringstream& in, const PixelROCName& roci
 
     return 0;
 }
-
+//added by Oscar and Justin
+/*static unsigned int PixelP0ROCDACSettings::getDACAddress(const std::string DACName){
+	if(DACNAme == k_DACName_Vdd){
+		return k_DACAddress_Vdd;
+	}
+	else if( DACName == k_DACName_Vana){
+		return k_DACAddres_Vana;
+	}
+	else if( DACName == k_DACName_Vcomp){
+		return k_DACAddres_Vcomp;
+	}
+	else if( DACName == k_DACName_VwllPr){
+		return k_DACAddres_VwllPr;
+	}
+	else if( DACName == k_DACName_VwllSh){
+		return k_DACAddres_VwllSh;
+	}
+	else if( DACName == k_DACName_VHldDel){
+		return k_DACAddres_VHldDel;
+	}
+	else if( DACName == k_DACName_Vtrim){
+		return k_DACAddres_Vtrim;
+	}
+	else if( DACName == k_DACName_VcThr){
+		return k_DACAddres_VcThr;
+	}
+	else if( DACName == k_DACName_VIbias_bus){
+		return k_DACAddres_VIbias_bus;
+	}
+	else if( DACName == k_DACName_VIColOr){
+		return k_DACAddres_VIColOr;
+	}
+	else if( DACName == k_DACName_Vcal){
+		return k_DACAddres_Vcal;
+	}
+	else if( DACName == k_DACName_CalDel){
+		return k_DACAddres_CalDel;
+	}
+	else if( DACName == k_DACName_TempRange){
+		return k_DACAddres_TempRange;
+	}
+	else if( DACName == k_DACName_WBC){
+		return k_DACAddres_WBC;
+	}
+	else if( DACName == k_DACName_ChipContReg){
+		return k_DACAddres_ChipContReg;
+	}
+	else if( DACName == k_DACName_Vsf){
+		return k_DACAddres_Vsf;
+	}
+	else if( DACName == k_DACName_Vleak){
+		return k_DACAddres_Vleak;
+	}
+	else if( DACName == k_DACName_VrgPr){
+		return k_DACAddres_VrgPr;
+	}
+	else if( DACName == k_DACName_VrgSh){
+		return k_DACAddres_VrgSh;
+	}
+	else if( DACName == k_DACName_VIbias_sf){
+		return k_DACAddres_VIbias_sf;
+	}
+	else if( DACName == k_DACName_VOffsetOp){
+		return k_DACAddres_VOffsetOp;
+	}
+	else if( DACName == k_DACName_VbiasOp){
+		return k_DACAddres_VbiasOp;
+	}
+	else if( DACName == k_DACName_VOffsetRO){
+		return k_DACAddres_VOffsetRO;
+	}
+	else if( DACName == k_DACName_VIon){
+		return k_DACAddres_VIon;
+	}
+	else if( DACName == k_DACName_VIbias_PH){
+		return k_DACAddres_VIbias_PH;
+	}
+	else if( DACName == k_DACName_VIbias_DAC){
+		return k_DACAddres_VIbias_DAC;
+	}
+	else if( DACName == k_DACName_VIbias_roc){
+		return k_DACAddres_VIbias_roc;
+	}
+	else if( DACName == k_DACName_Vnpix){
+		return k_DACAddres_Vnpix;
+	}
+	else if( DACName == k_DACName_VsumCol){
+		return k_DACAddres_VsumCol;
+	}
+	else{
+		cout << "ERROR in PixelP0ROCDACSettings::getDACAddress, DACName: " << DACName << "Does not exists" ;
+	}
+}
+*/
 int PixelP0ROCDACSettings::read(ifstream& in, const PixelROCName& rocid){
     
     std::string mthn = "[PixelROCDACSettings::read()]\t\t\t\t    " ;

@@ -77,6 +77,8 @@ namespace pos{
     std::shared_ptr<PixelROCDACSettings> getDACSettings(PixelROCName);
 
     unsigned int numROCs() {return dacsettings_.size();}
+    void setAllDAC(PixelFECConfigInterface *& pixelFEC, const PixelHdwAddress& theROC, 
+		   std::map<std::string,std::vector<unsigned int> >& dacs, const bool buffermode, const bool ROCType) const;
 
     //Generate the DAC settings
     void generateConfiguration(PixelFECConfigInterface* pixelFEC,
@@ -106,9 +108,8 @@ namespace pos{
     friend std::ostream& operator<<(std::ostream& s, const PixelDACSettings& mask);
 
   private:
-   // enum ROCType_ {analog, digital};	
     std::vector<std::shared_ptr<PixelROCDACSettings>> dacsettings_;
-
+    bool  ROCType_; //  false means Phase0 ROC, true means Phase1 ROC
     bool rocIsDisabled(const PixelDetectorConfig* detconfig, const PixelROCName rocname) const;
 
   };

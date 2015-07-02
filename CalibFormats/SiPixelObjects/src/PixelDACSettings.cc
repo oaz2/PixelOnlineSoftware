@@ -6,7 +6,6 @@
 //
 //
 
-
 #include "CalibFormats/SiPixelObjects/interface/PixelDACSettings.h"
 #include "CalibFormats/SiPixelObjects/interface/PixelROCDACSettings.h"
 #include "CalibFormats/SiPixelObjects/interface/PixelDACNames.h"
@@ -23,6 +22,7 @@
 #include <sys/time.h>
 #include <cstdlib>
 #include <memory>
+
 using namespace pos;
 
 namespace {
@@ -57,7 +57,8 @@ PixelDACSettings::PixelDACSettings(std::string filename):
 	
     in >> tag;
     if(tag.compare("digital")==0){
-	//ROCType_ = digital;
+	ROCType_ = true;
+ 	std::cout << "This is digital" << std::endl;
 	in >> tag;
 	//might have to shift down tag one
 	while (!in.eof()){
@@ -73,7 +74,8 @@ PixelDACSettings::PixelDACSettings(std::string filename):
 	if(tag.compare("analog")==0){
 		in >> tag;
 	}
-	//ROCType_ = analog;
+	ROCType_ = false;
+	std::cout << "This is analog" << std::endl;
         while (!in.eof()){	    
       		PixelROCName rocid(in);
       //	    std::cout << "[PixelDACSettings::PixelDACSettings()] DAC setting ROC id:"<<rocid<<std::endl;
@@ -136,7 +138,7 @@ PixelDACSettings::PixelDACSettings(std::string filename):
 	}
 */
 
-    
+   
    // in.close();
   }
 
@@ -145,6 +147,88 @@ PixelDACSettings::PixelDACSettings(std::string filename):
 
 
 }
+
+void PixelDACSettings::setAllDAC(PixelFECConfigInterface *& pixelFEC, const PixelHdwAddress& theROC,
+                                  std::map<std::string,std::vector<unsigned int> >& dacs, const bool buffermode, const bool ROCType) const {
+  std::cout << "Begin setAllDAC " << std::endl;
+  if(ROCType == true){
+	std::cout << "We are using digital ROCS!"<< std::endl;
+	assert(dacs.size()==20);
+  }
+  else{
+	std::cout << "We are using analog ROCS!"<< std::endl;
+	assert(dacs.size()==29);
+  }
+
+  //std::cout << "In PixelFECInterface::setAllDAC "<<theROC.mfec()<<" "<<theROC.mfecchannel()<<" "
+  //        <<theROC.hubaddress()<<" "<<theROC.portaddress()<<" "<<theROC.rocid()<<" "<<dacs.size()
+  //    << std::endl;
+  int mfec = theROC.mfec();
+  int mfecchannel = theROC.mfecchannel();
+
+  // Clear the buffer if not in buffer mode) 
+  if(!buffermode) {
+    if (pixelFEC->getqbufn(mfec,mfecchannel) > 0)  {
+      pixelFEC->qbufsend(mfec,mfecchannel);
+     std::cout << "mfec " << mfec <<":"<<mfecchannel<<" leftover from buffer mode "
+	   <<pixelFEC->getqbufn(mfec, mfecchannel)<< std::endl;
+    }
+  }
+
+  // Program the control register
+  pixelFEC->progdac(mfec, 
+	  mfecchannel,
+	  theROC.hubaddress(),
+	  theROC.portaddress(),
+	  theROC.rocid(),
+	  dacs[k_DACName_ChipContReg][1],
+	  dacs[k_DACName_ChipContReg][0],buffermode);
+  
+  //make the iterator
+  for (auto it = dacs.begin(); it != dacs.end(); ++it){
+	std::string stmp = it->first;
+	std::vector<unsigned int> vtmp = it->second;
+	if (stmp != k_DACName_ChipContReg && stmp != k_DACName_WBC){
+		std::cout << "beging programming: " <<  stmp << std::endl;
+		pixelFEC->progdac(mfec,
+            		mfecchannel,
+            		theROC.hubaddress(),
+            		theROC.portaddress(),
+            		theROC.rocid(),
+            		vtmp[1],
+            		vtmp[0],buffermode);
+		std::cout << "end programming: " << stmp << std::endl;
+	}
+  }
+  /*	
+  // Program the 27 DACs
+  for (unsigned int dacaddress=0;dacaddress<27;dacaddress++){
+    //int ret=
+    //std::cout<<(dacaddress+1)<<" "<<dacs[dacaddress]<<" ";
+    cout << "We are now in the for loop!" << endl;
+    progdac(mfec,
+            mfecchannel,
+            theROC.hubaddress(),
+            theROC.portaddress(),
+            theROC.rocid(),
+            dacaddress+1,
+            dacs[dacaddress],buffermode);
+  }
+*/
+  // Program the WBC
+  //std::cout<<std::endl<<" Program WBC "<<dacs[27]<<std::endl;
+  pixelFEC->progdac(mfec,
+	  mfecchannel,
+	  theROC.hubaddress(),
+	  theROC.portaddress(),
+	  theROC.rocid(),
+	  254,
+	  (dacs[k_DACName_WBC])[0],buffermode);
+
+  std::cout << "End setAllDAC" << std::endl;
+
+}
+
 // modified by MR on 10-01-2008 14:48:19
 // updates to take in smart pointers instead of reference
 PixelDACSettings::PixelDACSettings(std::shared_ptr<PixelROCDACSettings> rocname):
@@ -546,9 +630,10 @@ void PixelDACSettings::writeXML(pos::PixelConfigKey key, int version, std::strin
 void PixelDACSettings::generateConfiguration(PixelFECConfigInterface* pixelFEC,
 					     PixelNameTranslation* trans, PixelDetectorConfig* detconfig, bool HVon) const{
 
+  std::cout << "Begin generateConfiguration" << std::endl;
   bool bufferData=true; 
 
-  std::vector<unsigned int> dacs;
+  std::map<std::string, std::vector<unsigned int>> dacs;
 
   //pixelFEC->fecDebug(1);  //FIXME someday maybe don't want to take the time
 
@@ -574,9 +659,10 @@ void PixelDACSettings::generateConfiguration(PixelFECConfigInterface* pixelFEC,
 // 		      controlreg,
 // 		      bufferData);
 
-    if (!HVon || disableRoc)    dacs[11]=0; //set Vcthr DAC to 0 (Vcthr is DAC 12=11+1)
+    if (!HVon || disableRoc)    dacs[k_DACName_VcThr ][0]=0; //set Vcthr DAC to 0 (Vcthr is DAC 12=11+1)
     //    std::cout<<" ; setting VcThr to "<<dacs[11]<<std::endl; //for debugging
-    pixelFEC->setAllDAC(theROC,dacs,bufferData);
+    setAllDAC(pixelFEC, theROC, dacs, bufferData, ROCType_);
+
 
     // start with no pixels on for calibration
     pixelFEC->clrcal(theROC.mfec(), 
@@ -638,7 +724,7 @@ void PixelDACSettings::generateConfiguration(PixelFECConfigInterface* pixelFEC,
       if( (theROC.mfec()==1) && (theROC.mfecchannel()==1) &&  (theROC.hubaddress()==0) && 
 	  (theROC.portaddress()==0) &&  (theROC.rocid()) ) 
 	std::cout<<"ROC="<<dacsettings_[i]->getROCName()<< " ROC control reg to be set to: " 
-		 <<  dacs[28] <<" LastDAC=Temp "<<temperatureReg<<std::endl;
+		 <<  dacs[k_DACName_ChipContReg ][0] <<" LastDAC=Temp "<<temperatureReg<<std::endl;
       //int temperatureReg = dacs[26];  // overwrite with the number from DB
       pixelFEC->progdac(theROC.mfec(),
 			theROC.mfecchannel(),
@@ -653,7 +739,7 @@ void PixelDACSettings::generateConfiguration(PixelFECConfigInterface* pixelFEC,
       if( (theROC.mfec()==1) && (theROC.mfecchannel()==1) &&  (theROC.hubaddress()==0) && 
 	  (theROC.portaddress()==0) &&  (theROC.rocid()) )
 	std::cout<<"ROC="<<dacsettings_[i]->getROCName()
-		 << " ROC control reg to be set to: " <<  dacs[28] <<" LastDAC=Vcal"<<std::endl;
+		 << " ROC control reg to be set to: " <<  dacs[k_DACName_ChipContReg ][0] <<" LastDAC=Vcal"<<std::endl;
       // VCAL
       pixelFEC->progdac(theROC.mfec(),
 			theROC.mfecchannel(),
@@ -670,7 +756,7 @@ void PixelDACSettings::generateConfiguration(PixelFECConfigInterface* pixelFEC,
   if (bufferData) {  // Send data to the FEC
     pixelFEC->qbufsend();
   }
-  
+  std::cout << "end generateConfig" << std::endl;
 }
 //modified it to include pointer
 void PixelDACSettings::setVcthrDisable(PixelFECConfigInterface* pixelFEC, PixelNameTranslation* trans ) const {
@@ -681,7 +767,7 @@ void PixelDACSettings::setVcthrDisable(PixelFECConfigInterface* pixelFEC, PixelN
 
   bool bufferData=true;
 
-  std::vector<unsigned int> dacs;
+  std::map<std::string, std::vector<unsigned int>> dacs;
 
   for(unsigned int i=0;i<dacsettings_.size();i++){ //loop over the ROCs
 
@@ -747,7 +833,7 @@ void PixelDACSettings::setVcthrEnable(PixelFECConfigInterface* pixelFEC, PixelNa
 
   bool bufferData=true;
 
-  std::vector<unsigned int> dacs;
+  std::map<std::string, std::vector<unsigned int>> dacs;
 
   for(unsigned int i=0;i<dacsettings_.size();i++){ //loop over the ROCs
 
@@ -769,8 +855,8 @@ void PixelDACSettings::setVcthrEnable(PixelFECConfigInterface* pixelFEC, PixelNa
 			theROC.hubaddress(),
 			theROC.portaddress(),
 			theROC.rocid(),
-			12, //12 == Vcthr
-			dacs[11],
+			dacs[k_DACName_VcThr][1], //12 == Vcthr
+			dacs[k_DACName_VcThr][0],
 			bufferData);
       
       //enable the roc (assuming controlreg was set for the roc to be enabled)

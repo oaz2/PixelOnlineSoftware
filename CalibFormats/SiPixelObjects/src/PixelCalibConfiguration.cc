@@ -967,17 +967,17 @@ void PixelCalibConfiguration::nextFECState(std::map<unsigned int, PixelFECConfig
       rocInfo.tbmChannel_ = tbmChannel;
 #endif
 
-      std::map<std::string, unsigned int> defaultDACValues;
+      std::map<std::string,std::vector<unsigned int>> defaultDACValues;
       (*dacs)[PixelModuleName(rocs_[i].rocname())]->getDACSettings(rocs_[i])->getDACs(defaultDACValues);
 
       for ( std::vector<PixelDACScanRange>::const_iterator dacs_itr = dacs_.begin(); dacs_itr != dacs_.end(); dacs_itr++ )
       {
-        std::map<std::string, unsigned int>::const_iterator foundThisDAC = defaultDACValues.find(dacs_itr->name());
+        std::map<std::string, std::vector<unsigned int>>::const_iterator foundThisDAC = defaultDACValues.find(dacs_itr->name());
         assert( foundThisDAC != defaultDACValues.end() );
 
 	pair<unsigned int, unsigned int> 
 	  dacchannelAndValue(dacs_itr->dacchannel(),
-			     foundThisDAC->second);
+			     (foundThisDAC->second)[0]);
 
 	rocInfo.defaultDACs_.push_back(dacchannelAndValue);
       }

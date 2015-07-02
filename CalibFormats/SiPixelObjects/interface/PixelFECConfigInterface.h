@@ -9,10 +9,10 @@
 *   A longer explanation will be placed here later
 */
 
+#include <map>
 #include <vector>
 #include <string>
 #include "CalibFormats/SiPixelObjects/interface/PixelHdwAddress.h"
-
 
 namespace pos{
 /*! \class PixelFECConfigInterface PixelFECConfigInterface.h "interface/PixelFECConfigInterface.h"
@@ -47,10 +47,6 @@ namespace pos{
     //			      unsigned char maskAndTrim,)=0;
   
     //Generate the commands needed to set the DAC values for a ROC.
-    virtual void setAllDAC(const PixelHdwAddress& theROC, 
-			   const std::vector<unsigned int>& dacs,
-			   const bool buffermode=false) = 0;
-
     virtual int roctrimload(int mfec, int fecchannel, 
 			    int hubaddress, int portaddress, int rocid,
 			    const std::vector<unsigned char>& allPixels)=0;
@@ -110,6 +106,7 @@ namespace pos{
 			unsigned char databyte, bool buffermode=false)=0;
 
     virtual int qbufsend(void)=0;
+    virtual int qbufsend(int mfec, int fecchannel)=0;
 
     virtual void fecDebug(int newstate)=0;
 
@@ -133,6 +130,7 @@ namespace pos{
     virtual int rocreset(int mfec, int fecchannel, 
 			 int tbmchannel, int hubaddress)=0;		 
 
+    virtual  int getqbufn(int a, int b) =0;
 
     //virtual void setVCalDAC(std::string ROC, unsigned char dac)=0;
  

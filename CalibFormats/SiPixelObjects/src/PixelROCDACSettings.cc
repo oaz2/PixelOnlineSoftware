@@ -51,3 +51,9 @@ string PixelROCDACSettings::ToLower(string generic)
     }
   return result ;
 }
+std::vector<unsigned int> PixelROCDACSettings::make_vector(unsigned int DACValue, unsigned int DACAddress) const{
+	std::vector<unsigned int> v;
+	v.push_back(DACValue);
+	v.push_back(DACAddress);
+	return v;
+}

@@ -15,7 +15,6 @@
 #include <assert.h>
 
 #include "CalibFormats/SiPixelObjects/interface/PixelFECConfigInterface.h"
-
 #define USE_HAL  // to enable HAL use
 #define LINUX
 
@@ -297,15 +296,12 @@ class PixelFECInterface: public pos::PixelFECConfigInterface {
                         unsigned char mask,
                         const bool buffermode = false);
 
-  void setAllDAC(const pos::PixelHdwAddress& theROC, 
-		 const std::vector<unsigned int>& dacs,
-		 const bool buffermode = false);
-
   // from wolfram
   int testFiberEnable(const int mfec, const int enable);
   int testFiber(const int mfec, const int channel, int* rda, int * rck);
-
- private:
+  int getqbufn(int a, int b) { return qbufn[a][b]; }
+ 
+private:
 
 #ifdef USE_HAL  // Access VME with HAL
   const HAL::VMEDevice *const vmeDevicePtr;

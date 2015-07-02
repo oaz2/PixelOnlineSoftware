@@ -51,8 +51,8 @@ namespace pos{
     virtual void writeXMLTrailer(std::ofstream *out) const = 0 ;
     
     //made both of these pure virtual 
-    virtual void getDACs(std::vector<unsigned int>& dacs) const = 0;
-    virtual void getDACs(std::map<std::string, unsigned int>& dacs) const = 0;
+    //virtual void getDACs(std::vector<unsigned int>& dacs) const = 0;
+    virtual void getDACs(std::map<std::string,std::vector<unsigned int>>& dacs) const = 0;
 
     //made setDAC into a pure vortual function
     virtual void setDAC(unsigned int dacaddress, unsigned int dacvalue) = 0;
@@ -72,6 +72,7 @@ namespace pos{
 
     //also made it virtuall so that derived classes can call it
     virtual unsigned int getDac(std::string dacName) const = 0;
+    //virtual unsigned int getDACAddress(const std::string DACNAme) = 0; 
 
     bits4 getVdd() {return Vdd_;}
     void setVdd(bits4 vdd) {Vdd_=vdd;}
@@ -126,7 +127,8 @@ namespace pos{
     //friend std::ostream& operator<<(std::ostream& s, const PixelROCDACSettings& dacs);
 
   protected:
-
+    
+    std::vector<unsigned int> make_vector(unsigned int DACValue, unsigned int DACAddress) const ;
     PixelROCName rocid_;
 
     //The dac settings used by the ROC

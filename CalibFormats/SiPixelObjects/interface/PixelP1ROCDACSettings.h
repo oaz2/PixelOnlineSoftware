@@ -47,9 +47,9 @@ namespace pos{
     void writeXML(std::ofstream *out) const;
     void writeXMLTrailer(std::ofstream *out) const {;}
 
-    void getDACs(std::vector<unsigned int>& dacs) const;
-    void getDACs(std::map<std::string, unsigned int>& dacs) const;
-
+    //void getDACs(std::vector<unsigned int>& dacs) const;
+    void getDACs(std::map<std::string,std::vector<unsigned int>>& dacs) const;
+    //static unsigned int getDACAddress(const std::string DACName);
 
     void setDAC(unsigned int dacaddress, unsigned int dacvalue);
     void setDACs(std::map<std::string, unsigned int>& dacs) ;

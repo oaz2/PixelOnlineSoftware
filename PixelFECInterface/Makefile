@@ -38,7 +38,7 @@ LibraryDirs =
 #	$(XDAQ_ROOT)/daq/xdaq/src/linux/common/
 
 UserCFlags = -O
-UserCCFlags = -g -O -Wno-long-long
+UserCCFlags = -g -O -Wno-long-long -std=c++0x
 UserDynamicLinkFlags =
 UserStaticLinkFlags =
 UserExecutableLinkFlags =
