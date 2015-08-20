@@ -1,2 +1,2 @@
-#FEC number     crate     vme base address
-1               1         0x38000000
+#FEC number     crate     vme base address	FECType
+1               1         0x38000000		0

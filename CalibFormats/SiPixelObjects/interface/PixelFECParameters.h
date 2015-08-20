@@ -8,7 +8,7 @@
 */
 
 #include <iosfwd>
-
+#include "CalibFormats/SiPixelObjects/interface/PixelHardwareVersion.h"
 namespace pos{
 /*! \class PixelFECParameters PixelFECParameters.h "interface/PixelFECParameters.h"
 *   \brief This class implements..
@@ -28,17 +28,20 @@ namespace pos{
     unsigned int getFECNumber() const;
     unsigned int getCrate() const;
     unsigned int getVMEBaseAddress() const;
-    void setFECParameters( unsigned int fecnumber , unsigned int crate , unsigned int vmebaseaddress);
+    HdwType getFECType() const; 
+    
+    void setFECParameters( unsigned int fecnumber , unsigned int crate , unsigned int vmebaseaddress, unsigned int fectype = 0);
     void setFECNumber(unsigned int fecnumber);
     void setCrate(unsigned int crate);
     void setVMEBaseAddress(unsigned int vmebaseaddress) ;
+    void setFECType(unsigned int fectype);
     friend std::ostream& pos::operator <<(std::ostream& s,const PixelFECParameters &pFECp);
   private :
 
     unsigned int fecnumber_;   
     unsigned int crate_;   
     unsigned int vmebaseaddress_;   
-
+    HdwType FECType_; 
   };
 }
 #endif

@@ -116,14 +116,16 @@ PixelFECConfig::PixelFECConfig(std::string filename):
     in >> dummy;
     in >> dummy;
     in >> dummy;
+    in >> dummy;
 
     do {
 	
 	unsigned int fecnumber;
 	unsigned int crate;
 	unsigned int vme_base_address;
+        unsigned int fectype;
 
-	in >> fecnumber >> crate >> std::hex>> vme_base_address >>std::dec ;
+	in >> fecnumber >> crate >> std::hex>> vme_base_address >>std::dec >> fectype;
 
 	if (!in.eof() ){
 	    //std::cout << __LINE__ << "]\t" << mthn << fecnumber <<" "<< crate << " "  
@@ -131,7 +133,7 @@ PixelFECConfig::PixelFECConfig(std::string filename):
 	    
 	    PixelFECParameters tmp;
 	    
-	    tmp.setFECParameters(fecnumber , crate , vme_base_address);
+	    tmp.setFECParameters(fecnumber , crate , vme_base_address, fectype);
 	    
 	    fecconfig_.push_back(tmp);
 	}
@@ -210,6 +212,18 @@ unsigned int PixelFECConfig::VMEBaseAddressFromFECNumber(unsigned int fecnumber)
 
     return 0;
 
+}
+HdwType PixelFECConfig::FECTypeFromFECNumber(unsigned int fecnumber) const {
+
+    std::string mthn = "[PixelFECConfig::FECtypeFromFECNumber()]\t\t	" ;
+    for(unsigned int i=0;i<fecconfig_.size();i++){
+      if (fecconfig_[i].getFECNumber()==fecnumber) return fecconfig_[i].getFECType();
+    }
+
+    std::cout << __LINE__ << "]\t" << mthn << "Could not find FEC number: " << fecnumber << std::endl;
+    assert(0);
+
+    return unknown;
 }
 
 //=============================================================================================

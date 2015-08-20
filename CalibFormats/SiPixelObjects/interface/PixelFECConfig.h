@@ -38,6 +38,7 @@ namespace pos{
     unsigned int VMEBaseAddressFromFECNumber(unsigned int fecnumber) const;
     unsigned int getFECSlot(unsigned int i) {return FECSlotFromVMEBaseAddress(getVMEBaseAddress(i));}
     unsigned int FECSlotFromFECNumber(unsigned int fecnumber) {return FECSlotFromVMEBaseAddress(VMEBaseAddressFromFECNumber(fecnumber));}
+    HdwType FECTypeFromFECNumber(unsigned int fecnumber) const;
 
     void writeASCII(std::string dir="") const;
     void 	 writeXML(        pos::PixelConfigKey key, int version, std::string path)  const {;}

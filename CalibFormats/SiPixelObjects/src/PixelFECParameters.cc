@@ -40,12 +40,17 @@ unsigned int PixelFECParameters::getVMEBaseAddress() const{
     return vmebaseaddress_;
 
 }
+HdwType PixelFECParameters::getFECType() const {
 
-void PixelFECParameters::setFECParameters( unsigned int fecnumber , unsigned int crate , unsigned int vmebaseaddress){
+    return FECType_;
+}
+
+void PixelFECParameters::setFECParameters( unsigned int fecnumber , unsigned int crate , unsigned int vmebaseaddress, unsigned int fectype){
 
 fecnumber_ = fecnumber;
 crate_ = crate;
 vmebaseaddress_ =vmebaseaddress;
+FECType_=(HdwType)fectype;
 
 }
 
@@ -65,6 +70,12 @@ crate_=crate;
 void PixelFECParameters::setVMEBaseAddress(unsigned int vmebaseaddress){
 
 vmebaseaddress_=vmebaseaddress;
+
+}
+
+void PixelFECParameters::setFECType(unsigned int fectype){
+
+  FECType_=(HdwType)fectype;
 
 }
 
