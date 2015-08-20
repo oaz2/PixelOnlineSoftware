@@ -150,7 +150,7 @@ PixelDACSettings::PixelDACSettings(std::string filename):
 
 void PixelDACSettings::setAllDAC(PixelFECConfigInterface *& pixelFEC, const PixelHdwAddress& theROC,
                                   std::map<std::string,std::vector<unsigned int> >& dacs, const bool buffermode, const bool ROCType) const {
-  std::cout << "Begin setAllDAC " << std::endl;
+  std::cout << "Begin PixelDACSettings::setAllDAC " << std::endl;
   if(ROCType == true){
 	std::cout << "We are using digital ROCS!"<< std::endl;
 	assert(dacs.size()==20);
@@ -189,7 +189,7 @@ void PixelDACSettings::setAllDAC(PixelFECConfigInterface *& pixelFEC, const Pixe
 	std::string stmp = it->first;
 	std::vector<unsigned int> vtmp = it->second;
 	if (stmp != k_DACName_ChipContReg && stmp != k_DACName_WBC){
-		std::cout << "beging programming: " <<  stmp << std::endl;
+		//std::cout << "beging programming: " <<  stmp << std::endl;
 		pixelFEC->progdac(mfec,
             		mfecchannel,
             		theROC.hubaddress(),
@@ -197,27 +197,10 @@ void PixelDACSettings::setAllDAC(PixelFECConfigInterface *& pixelFEC, const Pixe
             		theROC.rocid(),
             		vtmp[1],
             		vtmp[0],buffermode);
-		std::cout << "end programming: " << stmp << std::endl;
+		//std::cout << "end programming: " << stmp << std::endl;
 	}
   }
-  /*	
-  // Program the 27 DACs
-  for (unsigned int dacaddress=0;dacaddress<27;dacaddress++){
-    //int ret=
-    //std::cout<<(dacaddress+1)<<" "<<dacs[dacaddress]<<" ";
-    cout << "We are now in the for loop!" << endl;
-    progdac(mfec,
-            mfecchannel,
-            theROC.hubaddress(),
-            theROC.portaddress(),
-            theROC.rocid(),
-            dacaddress+1,
-            dacs[dacaddress],buffermode);
-  }
-*/
-  // Program the WBC
-  //std::cout<<std::endl<<" Program WBC "<<dacs[27]<<std::endl;
-  pixelFEC->progdac(mfec,
+ pixelFEC->progdac(mfec,
 	  mfecchannel,
 	  theROC.hubaddress(),
 	  theROC.portaddress(),
@@ -230,7 +213,6 @@ void PixelDACSettings::setAllDAC(PixelFECConfigInterface *& pixelFEC, const Pixe
 }
 
 // modified by MR on 10-01-2008 14:48:19
-// updates to take in smart pointers instead of reference
 PixelDACSettings::PixelDACSettings(std::shared_ptr<PixelROCDACSettings> rocname):
   PixelConfigBase("","","") {
   dacsettings_.push_back(rocname) ;
@@ -238,7 +220,6 @@ PixelDACSettings::PixelDACSettings(std::shared_ptr<PixelROCDACSettings> rocname)
 }
 
 // modified by MR on 24-01-2008 14:27:35a
-// updated to take in smart pointer instead of a reference
 void PixelDACSettings::addROC(std::shared_ptr<PixelROCDACSettings> rocname)
 {
   dacsettings_.push_back(rocname) ;
@@ -458,13 +439,12 @@ PixelDACSettings::PixelDACSettings(std::vector< std::vector<std::string> > &tabl
 }//end PDSMatrix constructor
 //end added by Umesh
 
-//Modify this function to return a smart pointer to PixelROCDACSettings 
 std::shared_ptr<PixelROCDACSettings> PixelDACSettings::getDACSettings(int ROCId) const {
 
   return dacsettings_[ROCId];
 
 }
-//modified the function to return a smart pointer instead of a raw pointer 
+
 std::shared_ptr<PixelROCDACSettings> PixelDACSettings::getDACSettings(PixelROCName name){
 
 	
@@ -475,7 +455,7 @@ std::shared_ptr<PixelROCDACSettings> PixelDACSettings::getDACSettings(PixelROCNa
   return std::shared_ptr<PixelROCDACSettings>();
 
 }
-//modified it to take in pointers 
+
 void PixelDACSettings::writeBinary(std::string filename) const {
 
   std::ofstream out(filename.c_str(),std::ios::binary);
@@ -486,7 +466,6 @@ void PixelDACSettings::writeBinary(std::string filename) const {
 
 }
 
-//modified for pointers
 void PixelDACSettings::writeASCII(std::string dir) const {
 
   std::string mthn = "[PixelDACSettings::writeASCII()]\t\t\t    " ;
@@ -550,7 +529,6 @@ void PixelDACSettings::writeXMLHeader(pos::PixelConfigKey key,
 }
 
 //=============================================================================================
-//updates to work with pointer
 void PixelDACSettings::writeXML( std::ofstream *outstream,
 				 std::ofstream *out1stream,
 				 std::ofstream *out2stream) const {
@@ -826,7 +804,7 @@ void PixelDACSettings::setVcthrDisable(PixelFECConfigInterface* pixelFEC, PixelN
     pixelFEC->qbufsend();
   }
 }
-//modified to use pointers
+
 void PixelDACSettings::setVcthrEnable(PixelFECConfigInterface* pixelFEC, PixelNameTranslation* trans, PixelDetectorConfig* detconfig) const {
   //the point here is to set Vcthr to the nominal values
   //then enable the ROCs

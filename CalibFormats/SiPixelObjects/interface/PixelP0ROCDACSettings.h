@@ -1,9 +1,10 @@
 #ifndef PixelP0ROCDACSettings_h
 #define PixelP0ROCDACSettings_h
-/*! \file CalibFormats/SiPixelObjects/interface/PixelROCDACSettings.h
-*   \brief This class provide the data structure for the ROC DAC parameters
-*
-*   At this point I do not see a reason to make an abstract layer for this code.
+/*! \file CalibFormats/SiPixelObjects/interface/PixelP0ROCDACSettings.h
+*   \brief This class provide the data structure for the Phase 1 ROC DAC  parameters
+*   
+*   This class inherits from the PixelROCDACSettings class and defines specific 
+*   Phase0 members.  
 */
 
 #include <string>
@@ -20,8 +21,8 @@ namespace pos{
   typedef unsigned char bits8;
   typedef unsigned char bits4;
 
-/*! \class PixelROCDACSettings PixelROCDACSettings.h "interface/PixelROCDACSettings.h"
-*   \brief This class implements..
+/*! \class PixelP0ROCDACSettings PixelP0ROCDACSettings.h "interface/PixelP0ROCDACSettings.h"
+*   \brief This class implements the Phase0 ROC DAC settings
 *
 *   A longer explanation will be placed here later
 */
@@ -31,12 +32,10 @@ namespace pos{
 
     PixelP0ROCDACSettings();
     virtual ~PixelP0ROCDACSettings(){};
-
     PixelP0ROCDACSettings(const PixelROCName& rocid){rocid_= rocid;}
 
     //Build the commands needed to configure ROC
     //Need to use the mask bits also for this
-    //std::string getConfigCommand();
 
     int read(std::ifstream& in, const PixelROCName& rocid);
     int read(std::istringstream& in, const PixelROCName& rocid);
@@ -51,11 +50,18 @@ namespace pos{
     void writeXML( std::ofstream *out) const;
     void writeXMLTrailer( std::ofstream *out) const {;}
 
-    //void getDACs(std::vector<unsigned int>& dacs) const;
+    //assigns every DACName as a key in dacs and maps it to a corresponding vector
+    //  The vector contains a DACValue(indexed at 0) and a DACAddress(indexed at 1)
+    //  Note: if dacs intially contains a value, they will be deleted
     void getDACs(std::map<std::string,std::vector<unsigned int>>& dacs) const;
 
-
+    //sets the value of a specific DAC to dacvalue, given its dacadress
+    //It is the responsability of the user to provide a valid DACAdress
     void setDAC(unsigned int dacaddress, unsigned int dacvalue);
+
+    //sets the value of each indivual DAC by reading the values from the provided map
+    //It is the responsability of the user to provide a map containing a mapping
+    //for each DACName
     void setDACs(std::map<std::string, unsigned int>& dacs) ;
 
     void compareDACs(std::map<std::string, unsigned int> & dacs, 
@@ -65,8 +71,8 @@ namespace pos{
     void setDac(std::string dacName, int value);
 
     unsigned int getDac(std::string dacName) const;
-    //static unsigned int getDACAddress(const std::string DACName);
 
+    //Below the getter and setters functions are defined:
     bits8 getVleak() {return Vleak_;}
     void setVleak(bits8 vleak) {Vleak_=vleak;}
 
@@ -115,10 +121,7 @@ namespace pos{
 
   private:
 
-    
-
-    //The dac settings used by the ROC
-  		            
+    //Phase0 specific DACs are defined below		            
     bits8 Vleak_;            //addr 5
     bits4 VrgPr_;            //addr 6 		           
     bits4 VrgSh_;            //addr 8    		             

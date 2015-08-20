@@ -291,7 +291,7 @@ calib   16
 dac   0
 detconfig   0
 fecconfig   0
-fedcard   207
+fedcard   999
 fedconfig   0
 ltcconfig   0
 mask   0

@@ -33,7 +33,7 @@ class PixelFEDInterface {
 #ifdef USE_HAL // Access VME with HAL
   
   PixelFEDInterface(const HAL::VMEDevice * const);
-  ~PixelFEDInterface();
+  virtual ~PixelFEDInterface() = 0; //make class abstract
 
   // Generic FIFO2 access  
   int drainFifo2(string item, uint32_t offset, 
@@ -44,7 +44,7 @@ class PixelFEDInterface {
 #else // direct CAEN
 
   PixelFEDInterface(const uint32_t fedBase, long BHandle);
-  ~PixelFEDInterface();
+  virtual ~PixelFEDInterface() = 0; //make class abstract
   // Generic FIFO2 access  
   int drainFifo2(uint32_t VmeAddress, uint32_t *data); // generic
 

@@ -19,41 +19,6 @@ using namespace std;
 PixelP1ROCDACSettings::PixelP1ROCDACSettings(){}
 
 
-/*void PixelP1ROCDACSettings::getDACs (vector<unsigned int>& dacs) const
-{
-    dacs.clear();
-    dacs.push_back(Vdd_);
-    dacs.push_back(Vana_);
-    dacs.push_back(Vsh_);
-    dacs.push_back(Vcomp_);
-    dacs.push_back(0);  // JMTBAD hardcoded
-    dacs.push_back(0);
-    dacs.push_back(VwllPr_);
-    dacs.push_back(0);
-    dacs.push_back(VwllSh_);
-    dacs.push_back(VHldDel_);
-    dacs.push_back(Vtrim_);
-    dacs.push_back(VcThr_);
-    dacs.push_back(VIbias_bus_);
-    dacs.push_back(0);
-    dacs.push_back(0);
-    dacs.push_back(0);
-    dacs.push_back(PHOffset_);
-    dacs.push_back(0);
-    dacs.push_back(Vcomp_ADC_);
-    dacs.push_back(PHScale_);
-    dacs.push_back(0);
-    dacs.push_back(VIColOr_);
-    dacs.push_back(0);
-    dacs.push_back(0);
-    dacs.push_back(Vcal_);
-    dacs.push_back(CalDel_);
-    dacs.push_back(TempRange_);
-    dacs.push_back(WBC_);
-    dacs.push_back(ChipContReg_);
-    dacs.push_back(Readback_);
-}*/
-
 // Added by Dario
 void PixelP1ROCDACSettings::getDACs(std::map<std::string,std::vector<unsigned int>>& dacs) const
 {
@@ -184,76 +149,6 @@ void PixelP1ROCDACSettings::setDAC(unsigned int dacaddress, unsigned int dacvalu
 
 }
 
-/*static unsigned int PixelP1ROCDACSettings::getDACAddress(const std::string DACName){
-	if (DACName == k_DACName_Vdd) {
-    return k_DACAddress_Vdd
-  }
-  else if (DACName == k_DACName_Vana) {
-    return k_DACAddress_Vana 
-  }
-  else if (DACName == k_DACName_Vcomp) {
-    return k_DACAddress_Vcomp
-  }
-  else if (DACName == k_DACName_VwllPr) {
-    return k_DACAddress_VwllPr
-  }
-  else if (DACName == k_DACName_VwllSh) {
-    return k_DACAddress_VwllSh
-  }
-  else if (DACName == k_DACName_VHldDel) {
-    return k_DACAddress_VhldDel
-  }
-  else if (DACName == k_DACName_Vtrim) {
-    return k_DACAddress_Vtrim
-  }
-  else if (DACName == k_DACName_VcThr) {
-    return k_DACAddress_VcThr
-  }
-  else if (DACName == k_DACName_VIbias_bus) {
-    return k_DACAddress_VIbias_bus
-  }
-  else if (DACName == k_DACName_VIColOr) {
-    return k_DACAddress_VIColOr
-  }
-  else if (DACName == k_DACName_Vcal) {
-    return k_DACAddress_Vcal
-  }
-  else if (DACName == k_DACName_CalDel) {
-    return k_DACAddress_CalDel
-  }
-  else if (DACName == k_DACName_TempRange) {
-    return k_DACAddress_TempRange
-  }
-  else if (DACName == k_DACName_WBC) {
-    return k_DACAddress_WBC
-  }
-  else if (DACName == k_DACName_ChipContReg) {
-    return k_DACAddress_ChipContReg
-  }
-  else if (DACName == k_DACName_Vsh) {
-    return k_DACAddress_Vsh
-  }
-  else if (DACName == k_DACName_Vsf) {
-    return k_DACAddress_Vsf
-  }
-  else if (DACName == k_DACName_PhOffset) {
-    return k_DACAddress_PhOffset
-  }
-  else if (DACName == k_DACName_Vcomp_ADC) {
-    return k_DACAddress_VcompADC
-  }
-  else if (DACName == k_DACName_PHScale) {
-    return k_DACAddress_PHScale
-  } 
-  else if (DACName == k_DACName_Readback) {
-    return k_DACAddress_Readback
-  }
-  else
-{
-    cout << "ERROR in PixelROCDACSettings::getDACAddress: DAC name " << DACName << " does not exist." << endl;
-    assert(0);
-  }
-}*/
 
 void PixelP1ROCDACSettings::writeBinary(ofstream& out) const
 {
@@ -369,21 +264,6 @@ void PixelP1ROCDACSettings::writeXML(ofstream *out) const {
 }
 
 //=============================================================================================
-/*void PixelROCDACSettings::checkTag(string tag, 
-				   string dacName,
-				   const PixelROCName& rocid){
-  
-  std::string mthn = "[PixelROCDACSettings::checkTag()]\t\t\t\t    " ;
-  dacName+=":";
-  if (tag!=dacName) {
-    cout << __LINE__ << "]\t" << mthn << "Read ROC name       : "	      << tag     << endl;
-    cout << __LINE__ << "]\t" << mthn << "But expected to find: "	      << dacName << endl;
-    cout << __LINE__ << "]\t" << mthn << "When reading DAC settings for ROC " << rocid   << endl;
-    assert(0);
-  }
-
-}
-*/
 int PixelP1ROCDACSettings::read(std::istringstream& in, const PixelROCName& rocid)
 {
     std::string mthn = "[PixelROCDACSettings::read()]\t\t\t\t    " ;

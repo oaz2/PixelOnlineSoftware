@@ -492,7 +492,7 @@ std::set<PixelChannel> PixelNameTranslation::getChannels(const PixelDetectorConf
 }
 
 const PixelHdwAddress* PixelNameTranslation::getHdwAddress(const PixelROCName& aROC) const{
-
+  std::cout << "PixelNameTranslation getHdwAddress: " << std::endl;
   static std::string mthn = "[PixelNameTranslation::getHdwAddress()]\t\t    " ;
   std::map<PixelROCName,PixelHdwAddress>::const_iterator it=
     translationtable_.find(aROC);

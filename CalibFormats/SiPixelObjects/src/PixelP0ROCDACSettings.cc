@@ -18,41 +18,7 @@ using namespace std;
 
 PixelP0ROCDACSettings::PixelP0ROCDACSettings(){}
 
-/*
-void PixelP0ROCDACSettings::getDACs(vector<unsigned int>& dacs) const
-{
-    dacs.clear();
-    dacs.push_back(Vdd_);
-    dacs.push_back(Vana_);
-    dacs.push_back(Vsf_);
-    dacs.push_back(Vcomp_);
-    dacs.push_back(Vleak_);
-    dacs.push_back(VrgPr_);
-    dacs.push_back(VwllPr_);
-    dacs.push_back(VrgSh_);
-    dacs.push_back(VwllSh_);
-    dacs.push_back(VHldDel_);
-    dacs.push_back(Vtrim_);
-    dacs.push_back(VcThr_);
-    dacs.push_back(VIbias_bus_);
-    dacs.push_back(VIbias_sf_);
-    dacs.push_back(VOffsetOp_);
-    dacs.push_back(VbiasOp_);
-    dacs.push_back(VOffsetRO_);
-    dacs.push_back(VIon_);
-    dacs.push_back(VIbias_PH_);
-    dacs.push_back(VIbias_DAC_);
-    dacs.push_back(VIbias_roc_);
-    dacs.push_back(VIColOr_);
-    dacs.push_back(Vnpix_);
-    dacs.push_back(VsumCol_);
-    dacs.push_back(Vcal_);
-    dacs.push_back(CalDel_);
-    dacs.push_back(TempRange_);
-    dacs.push_back(WBC_);
-    dacs.push_back(ChipContReg_);
-}
-*/
+
 // Added by Dario
 void PixelP0ROCDACSettings::getDACs(std::map<std::string, std::vector<unsigned int> >& dacs) const
 {
@@ -379,21 +345,7 @@ void PixelP0ROCDACSettings::writeXML(ofstream *out) const {
 }
 
 //=============================================================================================
-/*void PixelROCDACSettings::checkTag(string tag, 
-				   string dacName,
-				   const PixelROCName& rocid){
-  
-  std::string mthn = "[PixelROCDACSettings::checkTag()]\t\t\t\t    " ;
-  dacName+=":";
-  if (tag!=dacName) {
-    cout << __LINE__ << "]\t" << mthn << "Read ROC name       : "	      << tag     << endl;
-    cout << __LINE__ << "]\t" << mthn << "But expected to find: "	      << dacName << endl;
-    cout << __LINE__ << "]\t" << mthn << "When reading DAC settings for ROC " << rocid   << endl;
-    assert(0);
-  }
 
-}
-*/
 int PixelP0ROCDACSettings::read(std::istringstream& in, const PixelROCName& rocid)
 {
     std::string mthn = "[PixelROCDACSettings::read()]\t\t\t\t    " ;
@@ -508,100 +460,7 @@ int PixelP0ROCDACSettings::read(std::istringstream& in, const PixelROCName& roci
 
     return 0;
 }
-//added by Oscar and Justin
-/*static unsigned int PixelP0ROCDACSettings::getDACAddress(const std::string DACName){
-	if(DACNAme == k_DACName_Vdd){
-		return k_DACAddress_Vdd;
-	}
-	else if( DACName == k_DACName_Vana){
-		return k_DACAddres_Vana;
-	}
-	else if( DACName == k_DACName_Vcomp){
-		return k_DACAddres_Vcomp;
-	}
-	else if( DACName == k_DACName_VwllPr){
-		return k_DACAddres_VwllPr;
-	}
-	else if( DACName == k_DACName_VwllSh){
-		return k_DACAddres_VwllSh;
-	}
-	else if( DACName == k_DACName_VHldDel){
-		return k_DACAddres_VHldDel;
-	}
-	else if( DACName == k_DACName_Vtrim){
-		return k_DACAddres_Vtrim;
-	}
-	else if( DACName == k_DACName_VcThr){
-		return k_DACAddres_VcThr;
-	}
-	else if( DACName == k_DACName_VIbias_bus){
-		return k_DACAddres_VIbias_bus;
-	}
-	else if( DACName == k_DACName_VIColOr){
-		return k_DACAddres_VIColOr;
-	}
-	else if( DACName == k_DACName_Vcal){
-		return k_DACAddres_Vcal;
-	}
-	else if( DACName == k_DACName_CalDel){
-		return k_DACAddres_CalDel;
-	}
-	else if( DACName == k_DACName_TempRange){
-		return k_DACAddres_TempRange;
-	}
-	else if( DACName == k_DACName_WBC){
-		return k_DACAddres_WBC;
-	}
-	else if( DACName == k_DACName_ChipContReg){
-		return k_DACAddres_ChipContReg;
-	}
-	else if( DACName == k_DACName_Vsf){
-		return k_DACAddres_Vsf;
-	}
-	else if( DACName == k_DACName_Vleak){
-		return k_DACAddres_Vleak;
-	}
-	else if( DACName == k_DACName_VrgPr){
-		return k_DACAddres_VrgPr;
-	}
-	else if( DACName == k_DACName_VrgSh){
-		return k_DACAddres_VrgSh;
-	}
-	else if( DACName == k_DACName_VIbias_sf){
-		return k_DACAddres_VIbias_sf;
-	}
-	else if( DACName == k_DACName_VOffsetOp){
-		return k_DACAddres_VOffsetOp;
-	}
-	else if( DACName == k_DACName_VbiasOp){
-		return k_DACAddres_VbiasOp;
-	}
-	else if( DACName == k_DACName_VOffsetRO){
-		return k_DACAddres_VOffsetRO;
-	}
-	else if( DACName == k_DACName_VIon){
-		return k_DACAddres_VIon;
-	}
-	else if( DACName == k_DACName_VIbias_PH){
-		return k_DACAddres_VIbias_PH;
-	}
-	else if( DACName == k_DACName_VIbias_DAC){
-		return k_DACAddres_VIbias_DAC;
-	}
-	else if( DACName == k_DACName_VIbias_roc){
-		return k_DACAddres_VIbias_roc;
-	}
-	else if( DACName == k_DACName_Vnpix){
-		return k_DACAddres_Vnpix;
-	}
-	else if( DACName == k_DACName_VsumCol){
-		return k_DACAddres_VsumCol;
-	}
-	else{
-		cout << "ERROR in PixelP0ROCDACSettings::getDACAddress, DACName: " << DACName << "Does not exists" ;
-	}
-}
-*/
+
 int PixelP0ROCDACSettings::read(ifstream& in, const PixelROCName& rocid){
     
     std::string mthn = "[PixelROCDACSettings::read()]\t\t\t\t    " ;

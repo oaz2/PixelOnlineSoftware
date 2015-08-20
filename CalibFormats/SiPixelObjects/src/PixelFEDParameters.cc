@@ -8,6 +8,7 @@ PixelFEDParameters::PixelFEDParameters()
 fednumber_=0;
 crate_=0;
 vmebaseaddress_=0;
+fedType_=phase0;
 
 }
 
@@ -39,12 +40,18 @@ unsigned int PixelFEDParameters::getVMEBaseAddress() const{
     return vmebaseaddress_;
 
 }
+HdwType PixelFEDParameters::getFEDType()  const{
 
-void PixelFEDParameters::setFEDParameters( unsigned int fednumber , unsigned int crate , unsigned int vmebaseaddress){
+    return fedType_;
+
+}
+
+void PixelFEDParameters::setFEDParameters( unsigned int fednumber , unsigned int crate , unsigned int vmebaseaddress, unsigned int fedtype){
 
 fednumber_ = fednumber;
 crate_ = crate;
 vmebaseaddress_ =vmebaseaddress;
+fedType_ = (HdwType)fedtype; 
 
 }
 
@@ -64,6 +71,12 @@ crate_=crate;
 void PixelFEDParameters::setVMEBaseAddress(unsigned int vmebaseaddress){
 
 vmebaseaddress_=vmebaseaddress;
+
+}
+
+void PixelFEDParameters::setFEDType(unsigned int fedtype){
+
+fedType_= (HdwType)fedtype;
 
 }
 

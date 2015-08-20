@@ -30,7 +30,11 @@
 #include "CalibFormats/SiPixelObjects/interface/PixelFECConfig.h"
 #include "CalibFormats/SiPixelObjects/interface/PixelFEDConfig.h"
 #include "CalibFormats/SiPixelObjects/interface/PixelGlobalDelay25.h"
-#include "PixelFEDInterface/include/PixelFEDInterface.h"
+
+#include "PixelFEDInterface/include/PixelP0FEDInterface.h"
+#include "PixelFEDInterface/include/PixelP1FEDInterface.h"
+
+
 #include "CalibFormats/SiPixelObjects/interface/PixelConfigFile.h"
 #include "VMEDevice.hh" 
 

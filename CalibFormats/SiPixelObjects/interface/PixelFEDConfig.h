@@ -12,7 +12,7 @@
 #include <string>
 #include "CalibFormats/SiPixelObjects/interface/PixelConfigBase.h"
 #include "CalibFormats/SiPixelObjects/interface/PixelFEDParameters.h"
-
+#include "CalibFormats/SiPixelObjects/interface/PixelHardwareVersion.h"
 namespace pos{
 /*!  \ingroup ConfigurationObjects "Configuration Objects"
 *    
@@ -42,6 +42,7 @@ namespace pos{
     unsigned int crateFromFEDNumber(unsigned int fednumber) const;
     unsigned int VMEBaseAddressFromFEDNumber(unsigned int fednumber) const;
     std::string VMEBaseAddressFromFEDNumberAsString(unsigned int fednumber) const;
+    HdwType getFEDTypeFromFEDNumber(unsigned int fednumber) const;
 
     unsigned int FEDNumberFromCrateAndVMEBaseAddress(unsigned int crate, unsigned int vmebaseaddress) const;
 

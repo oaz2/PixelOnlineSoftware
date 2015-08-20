@@ -76,9 +76,11 @@ PixelFEDInterface::PixelFEDInterface(const HAL::VMEDevice * const vmeDeviceP ) :
 
 }
 //////////////////////////////////////////////////////////////////////
-PixelFEDInterface::~PixelFEDInterface(void) {
+
+/*PixelFEDInterface::~PixelFEDInterface(void) {
   cout<<" PixelFEDInterface destructor "<<endl;
-}
+}*/
+
 //////////////////////////////////////////////////////////////////////
 // Testing only
 void PixelFEDInterface::test(void) {
@@ -170,9 +172,12 @@ PixelFEDInterface::PixelFEDInterface(const uint32_t fedBase, long aBHandle) {
   CH_SubAddr[8]= 0x138000; //FifoI ch9
 }
 //////////////////////////////////////////////////////////////////////
+
+/*
 PixelFEDInterface::~PixelFEDInterface(void) {
   cout<<" PixelFEDInterface destructor "<<endl;
 }
+*/
 
 extern void analyzeError(CVErrorCodes ret); // Wills VME error analyzer.
 

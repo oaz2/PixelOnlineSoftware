@@ -1,2 +1,3 @@
-#FED number     crate     vme base address
-1               1         0xc1000000
+#FED number     crate     vme base address	fedtype
+1		1	  0xc1000000 		0
+2		1	  0xc1000001		1

@@ -156,22 +156,25 @@ PixelFEDConfig::PixelFEDConfig(std::string filename):
     in >> dummy;
     in >> dummy;
     in >> dummy;
+    in >> dummy;
 
     do {
 	
       unsigned int fednumber;
       unsigned int crate;
       unsigned int vme_base_address;
+      unsigned int fedtype; 
 
-      in >> fednumber >> crate >> std::hex >> vme_base_address >> std::dec;
+      in >> fednumber >> crate >> std::hex >> vme_base_address >> std::dec >> fedtype;
 
       if (!in.eof() ){
 	//	std::cout << __LINE__ << "]\t" << mthn << std::dec << fednumber <<" "<< crate << " 0x"  
 	//                << std::hex << vme_base_address<<std::dec<<std::endl;
 	PixelFEDParameters tmp;
 	    
-	tmp.setFEDParameters(fednumber , crate , vme_base_address);
-	    
+	tmp.setFEDParameters(fednumber , crate , vme_base_address, fedtype);
+	std::cout << "FEDParamater for Phase" << fedtype <<  " FED" << std::endl;
+    
 	fedconfig_.push_back(tmp); 
       }
 
@@ -281,6 +284,19 @@ std::string PixelFEDConfig::VMEBaseAddressFromFEDNumberAsString(unsigned int fed
   s << VMEBaseAddressFromFEDNumber(fednumber);
   return s.str();
 }
+
+HdwType PixelFEDConfig::getFEDTypeFromFEDNumber(unsigned int fednumber) const{
+  std::string mthn = "[PixelFEDConfig::getFEDTypeFromFEDNumber()]\t	";
+  for(unsigned int i=0;i<fedconfig_.size();i++){
+    if(fedconfig_[i].getFEDNumber()==fednumber) return fedconfig_[i].getFEDType();
+  }
+
+  std:: cout << __LINE__ << "]\t" << mthn << "Could not find FED number: " << fednumber << std::endl;
+  assert(0);
+
+  return unknown;
+}
+
 
 unsigned int PixelFEDConfig::FEDNumberFromCrateAndVMEBaseAddress(unsigned int crate, unsigned int vmebaseaddress) const {
 

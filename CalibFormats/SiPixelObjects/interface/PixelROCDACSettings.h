@@ -3,7 +3,13 @@
 /*! \file CalibFormats/SiPixelObjects/interface/PixelROCDACSettings.h
 *   \brief This class provide the data structure for the ROC DAC parameters
 *
-*   At this point I do not see a reason to make an abstract layer for this code.
+*   This class is abstract base class to be used in PixelDACSettings.  this 
+*   class has function declarations that are defined in its derived classes
+*   PixelP0ROCDACSettigns and PixelP1ROCDACSettings.  Additionally, shared 
+*   member variables are defined in this class as well.  
+*   Since this class is abstract, any call to it must be through the use of 
+*   pointers.
+*
 */
 
 #include <string>
@@ -33,32 +39,51 @@ namespace pos{
 
     PixelROCDACSettings(const PixelROCName& rocid){rocid_= rocid;}
 
-    //Build the commands needed to configure ROC
-    //Need to use the mask bits also for this
+    //TODO: function currently return a null string
     std::string getConfigCommand();
 
-    //made both function virtual, wil be declared in the base classes	
+    //Both functions read from a stream, then set each dac variable to its
+    //corresponding value.
+    //It is the client's responsiblilty to correctly utilize the function as it
+    //is defined, such that each variable is matched with a unique value.
     virtual int read(std::ifstream& in, const PixelROCName& rocid) = 0 ;
     virtual int read(std::istringstream& in, const PixelROCName& rocid) = 0;
     
     virtual int readBinary(std::ifstream& in, const PixelROCName& rocid) = 0;
-    virtual void writeBinary(std::ofstream& out) const = 0;
-    virtual void writeASCII(std::ostream& out) const = 0;
     
+    //Writes to a binary file 
+    virtual void writeBinary(std::ofstream& out) const = 0;
+    
+    //Writes data to ASCII file
+    virtual void writeASCII(std::ostream& out) const = 0;
+
+    //Each function writes data to its specific XML file
     virtual void writeXML(pos::PixelConfigKey key, int version, std::string path) const = 0 ;  
     virtual void writeXMLHeader(pos::PixelConfigKey key, int version, std::string path, std::ofstream *out) const = 0 ;
     virtual void writeXML(std::ofstream *out) const = 0 ;
     virtual void writeXMLTrailer(std::ofstream *out) const = 0 ;
-    
-    //made both of these pure virtual 
-    //virtual void getDACs(std::vector<unsigned int>& dacs) const = 0;
+   
+    //Assigns every DACNAme as a key in dacs and maps it to a corresponding 
+    //vector.  Inside the vector is the address(index at 1) and the value
+    //(index at 0) of the dacs.  Sample usage:
+    //  map<string, vector<unsigned int>> dacs; 
+    //  ROCDACSettingObject->getDacs(dacs);
+    //Note: if dacs contains a value, they will be overwritt
     virtual void getDACs(std::map<std::string,std::vector<unsigned int>>& dacs) const = 0;
 
-    //made setDAC into a pure vortual function
+    //sets the value of a specific DAC to davvalue given its DACAddress.
+    //It is the responsability of the client to provide a valid DACAdress
     virtual void setDAC(unsigned int dacaddress, unsigned int dacvalue) = 0;
     
+    //This function matches the dacs address with its value by using a map.
+    //It is the responsability of the user to provide a map containing a 
+    //valid mapping for each DACName
     virtual void setDACs(std::map<std::string, unsigned int>& dacs) = 0;
 
+    //Determines the differences between this and dacs.  records the 
+    //differences in changes and stores the value in previous
+    //It is the responsability of the user to provide a map 
+    //containing a valid mapping for each DACName
     virtual void compareDACs(std::map<std::string, unsigned int> & dacs, 
                      std::map<std::string, bool>         & changes,
 		     std::map<std::string, unsigned int> & previous) = 0;
@@ -66,14 +91,16 @@ namespace pos{
     void checkTag(std::string tag, 
 		  std::string dacName,
 		  const PixelROCName& rocid);
-    //should make it virtual, only derived class should be able to 
-    //call it  
+
+    //This function sets dacs to their corresponding value.
+    //The client is responsible for inputing valid dacnames.
     virtual void setDac(std::string dacName, int value) = 0;
-
-    //also made it virtuall so that derived classes can call it
+    
+    //This function returns a value that corresponds to a given dacname,
+    //given that the client inputs a valid dacname.
     virtual unsigned int getDac(std::string dacName) const = 0;
-    //virtual unsigned int getDACAddress(const std::string DACNAme) = 0; 
 
+    //Getter and Setter functions for common DACs
     bits4 getVdd() {return Vdd_;}
     void setVdd(bits4 vdd) {Vdd_=vdd;}
 
@@ -124,15 +151,17 @@ namespace pos{
 
     PixelROCName getROCName() const {return rocid_;} 
 
-    //friend std::ostream& operator<<(std::ostream& s, const PixelROCDACSettings& dacs);
 
   protected:
-    
+    //helper function used in getDACs
     std::vector<unsigned int> make_vector(unsigned int DACValue, unsigned int DACAddress) const ;
+    
+    //The name of the ROC, follows the stanard Naming convection	
     PixelROCName rocid_;
 
-    //The dac settings used by the ROC
-
+    //The dac settings used by the ROC which are common in Phase 0 and Phase 1
+    //ROCs, members unique to them are declared in the corresponding derived
+    //class
     bits4 Vdd_;              //addr 1
     bits8 Vana_;             //addr 2
     bits4 Vcomp_;            //addr 4
@@ -148,7 +177,9 @@ namespace pos{
     bits8 TempRange_;        //addr 27
     bits8 WBC_;              //addr 254
     bits8 ChipContReg_;      //add   
-    
+
+    //Return the lowercase version of the given string
+    //(e.g PIxeL -> pixel)
     std::string ToLower(std::string) ;
     
   };

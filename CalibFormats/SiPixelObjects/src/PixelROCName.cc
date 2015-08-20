@@ -250,7 +250,7 @@ PixelROCName::PixelROCName(std::ifstream& s){
     std::string tmp;
 
     s >> tmp;
-
+    std::cout<<"This is"<<tmp<<std::endl;
     parsename(tmp);
 
 }

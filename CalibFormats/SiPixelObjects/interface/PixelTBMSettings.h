@@ -4,10 +4,17 @@
 * \file CalibFormats/SiPixelObjects/interface/PixelTBMSettings.h
 * \brief This class implements..
 *
-*   A longer explanation will be placed here later
+*   This class contains all the functions that a Phase0 and Phase1 
+*   PixelTBMSettings has.  This class will act as a guide in the sense
+*   that it will direct every function call to the correct PixelTBMSetting 
+*   object (PixelP0TBMSettings or PixelP1TBMSettings).  
+*   In addition, this function is responsible for calling the correct object
+*   based on the TBM being used (Phase0 or Phase1)
 *
 */
 
+#include "CalibFormats/SiPixelObjects/interface/PixelP1TBMSettings.h"
+#include "CalibFormats/SiPixelObjects/interface/PixelP0TBMSettings.h"
 #include <vector>
 #include "CalibFormats/SiPixelObjects/interface/PixelConfigBase.h"
 #include "CalibFormats/SiPixelObjects/interface/PixelFECConfigInterface.h"
@@ -27,21 +34,32 @@ namespace pos{
   class PixelTBMSettings: public PixelConfigBase {
 
   public:
-
+    //TODO: Add support for Phase1 TBM
     PixelTBMSettings(std::vector < std::vector< std::string> > &tableMat);
+    
+    //Reads from file determines if the TBM are Phase0 or Phase1
+    //by looking for a string "digital" or "analog" at the top line of the file
+    //Depending on this, it will construct either a PixelP0TBMSettings or a 
+    //PixelP1TBMSettings object. 
+    //	Note: if no string string is found, the constructor defaults to 
+    //	a Phase0 TBM
+    //TODO: Add support for Binary files
     PixelTBMSettings(std::string filename);
+
     // modified by MR on 29-04-2008 16:43:30
-  PixelTBMSettings():PixelConfigBase("", "", "") {;}
+    PixelTBMSettings():PixelConfigBase("", "", "") { std::cout << "default TBM" << std::endl;;}
 
     virtual ~PixelTBMSettings(){}
 
-    //Generate the DAC settings
+    //This function generates the DAC settings
     void generateConfiguration(PixelFECConfigInterface* pixelFEC,
 	                       PixelNameTranslation* trans,
 			       bool physics=false, bool doResets=true) const; 
-
+    
+    //Writes data into binary file
     void writeBinary(std::string filename) const;
 
+    //Each of these functions writes data into their respective files 
     void 	 writeASCII(std::string dir) const;
     void 	 writeXML(         pos::PixelConfigKey key, int version, std::string path) const {;}
     virtual void writeXMLHeader(   pos::PixelConfigKey key, 
@@ -59,35 +77,92 @@ namespace pos{
 				  std::ofstream *out2 = NULL
 				  ) const ;
 
-    friend std::ostream& operator<<(std::ostream& s, const PixelTBMSettings& mask);
+   //  friend std::ostream& operator<<(std::ostream& s, const PixelTBMSettings& mask);
+   
+//====================================================================================
+//============================== Phase1 Specific Functions============================
+//====================================================================================
+    unsigned char getTBMADelay() {
+	assert(tbmType_ == true && "ERROR calling digital function with analog TBM");
+	return tbmP1->getTBMADelay();
+	}
 
-    unsigned char getAnalogInputBias() {return analogInputBias_;}
-    void setAnalogInputBias(unsigned char analogInputBias) {analogInputBias_=analogInputBias;}
+    void setTBMDelay(unsigned char x) {
+	assert(tbmType_ == true && "ERROR calling digital function with analog TBM");
+	 tbmP1->setTBMADelay(x);
+	}
+
+    unsigned char getTBMBDelay() {
+	assert(tbmType_ == true && "ERROR calling digital function with analog TBM");
+	return  tbmP1->getTBMBDelay();
+	}
+    void setTBMBDelay(unsigned char x) {
+	assert(tbmType_ == true && "ERROR calling digital function with analog TBM");
+	tbmP1->setTBMBDelay(x);}
+
+    unsigned char getTBMPLLDelay() {
+	assert (tbmType_ == true && "ERROR calling digital function with analog TBM");
+	return tbmP1->getTBMPLLDelay();}
+    void setTBMPLLDelay(unsigned char x) {
+	assert (tbmType_ == true && "ERROR calling digital function with analog TBM");
+	tbmP1->setTBMPLLDelay(x);}
+
+    void getDACs(std::map<std::string, unsigned int>& dacs) const;
+//========================================================================================
+//======================= Phase0 specific functions=======================================
+//========================================================================================
+    unsigned char getAnalogInputBias() {
+	assert (tbmType_ == false && "ERROR calling analog function with digital TBM");
+	return tbmP0->getAnalogInputBias();}
+    void setAnalogInputBias(unsigned char analogInputBias) {
+	assert (tbmType_ == false && "ERROR calling analog function with digital TBM"); 
+	tbmP0->setAnalogInputBias(analogInputBias);}
     
-    unsigned char getAnalogOutputBias() {return analogOutputBias_;}
-    void setAnalogOutputBias(unsigned char analogOutputBias) {analogOutputBias_=analogOutputBias;}
+    unsigned char getAnalogOutputBias() {
+	assert (tbmType_ == false && "ERROR calling analog function with digital TBM");
+	return tbmP0->getAnalogOutputBias();}
+    void setAnalogOutputBias(unsigned char analogOutputBias) {
+	assert (tbmType_ == false && "ERROR calling analog function with digital TBM"); 
+	tbmP0->setAnalogOutputBias(analogOutputBias);}
     
-    unsigned char getAnalogOutputGain() {return analogOutputGain_;}
-    void setAnalogOutputGain(unsigned char analogOutputGain) {analogOutputGain_=analogOutputGain;}
+    unsigned char getAnalogOutputGain() { 
+	assert (tbmType_ == false && "ERROR calling analog function with digital TBM");
+	return tbmP0->getAnalogOutputGain();}
+    void setAnalogOutputGain(unsigned char analogOutputGain) {
+	assert (tbmType_ == false && "ERROR calling analog function with digital TBM");
+	tbmP0->setAnalogOutputGain(analogOutputGain);}
     
     // Added by Dario (Apr 2008)
-    bool getMode(void)      {return singlemode_;}
-    void setMode(bool mode) {singlemode_ = mode;}
+    bool getMode(void)      {
+	assert (tbmType_ == false && "ERROR: Calling analog function with digital TBM"); 
+	return tbmP0->getMode();}
+    void setMode(bool mode) {
+	assert (tbmType_ == false && "ERROR: Calling analog function with digital TBM");
+	tbmP0->setMode(mode);}
+//========================================================================================
+//=======================================================================================
+    
+    //This function differentiates between rocnames that are of type analog and  type digital
+    //,and sets them according to their type.  
     void setROCName(std::string rocname){
       	PixelROCName tmp(rocname);
-	rocid_=tmp;
+        if(tbmType_ == true ){
+		tbmP1->setROCName(tmp);
+	} 
+	else{
+		tbmP0->setROCName(tmp);
+	}
     }
+
+    //This function sets TBM to a generic value. It is the client's 
+    //responsibility to use valid notation to achieve desired result. 
     void setTBMGenericValue(std::string, int) ;
     
   private:
-
-    PixelROCName rocid_;
-    PixelModuleName moduleId_ ;
-
-    unsigned char analogInputBias_;
-    unsigned char analogOutputBias_;
-    unsigned char analogOutputGain_;
-    bool singlemode_;
+  
+  bool tbmType_;
+  pos::PixelP0TBMSettings* tbmP0;
+  pos::PixelP1TBMSettings* tbmP1;
 
   };
 }

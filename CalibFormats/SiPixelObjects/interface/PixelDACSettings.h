@@ -63,33 +63,67 @@ namespace pos{
   class PixelDACSettings: public PixelConfigBase {
 
   public:
-
+    //Reads from the filename and determines if ROCs are Phase0 or Phase1
+    //by looking for the string "digital" at the top line of the file
+    //	Note: if there is no string found, constructor will default to 
+    //	constructing Phase0 ROCs
+    //TODO: Binary files are currently not supported in this constructor
     PixelDACSettings(std::string filename);
+
     //Added by Umesh
+    //TODO: Add support for phase1 ROCs
     PixelDACSettings(std::vector<std::vector<std::string> >& tableMat);   
+
     // modified by MR on 10-01-2008 14:47:47
+    //Constructs a PixelDACSettings object from a rocname pointer.
+    //The cliend should provide a valid Phase0 ROC
+    //TODO: Add support for Phase1 ROCs
     PixelDACSettings(std::shared_ptr<PixelROCDACSettings> rocname);
+
     // modified by MR on 24-01-2008 14:28:14
     ~PixelDACSettings();
+
+    //Adds the current ROC to the dacsettings_ vector
+    //It is the responsability of the client to provide a valid rocname
     void addROC(std::shared_ptr<PixelROCDACSettings> rocname);
-    
+
+    //returns a PixelROCDACSettings shared pointer to the correspoding ROC
+    //It is the responsabilty of the client to provide a valid ROCId/PixelROCName    
     std::shared_ptr<PixelROCDACSettings> getDACSettings(int ROCId) const;
     std::shared_ptr<PixelROCDACSettings> getDACSettings(PixelROCName);
 
     unsigned int numROCs() {return dacsettings_.size();}
-    void setAllDAC(PixelFECConfigInterface *& pixelFEC, const PixelHdwAddress& theROC, 
-		   std::map<std::string,std::vector<unsigned int> >& dacs, const bool buffermode, const bool ROCType) const;
 
-    //Generate the DAC settings
+    //Programs all of the DACs in a current ROC in the following order:
+    //		ChipContReg -> All DACs except WBC -> WBC 
+    //It is the responsability of the user to provide the correct HdwAddress 
+    //for the ROC
+    void setAllDAC(PixelFECConfigInterface *& pixelFEC, const PixelHdwAddress& theROC, 
+		   std::map<std::string,std::vector<unsigned int> >& dacs,
+		   const bool buffermode, const bool ROCType) const;
+
+    //TODO: Write proper description of this file
     void generateConfiguration(PixelFECConfigInterface* pixelFEC,
-	                       PixelNameTranslation* trans, PixelDetectorConfig* detconfig, bool HVon=true) const;
+	                       PixelNameTranslation* trans, PixelDetectorConfig* detconfig,
+			       bool HVon=true) const;
+
+    //Loops through all of the module's ROCs,and for each: 
+    //	Set VCThr to zero 
+    //	Disable the ROC
+    //It is up to the user to provide non-null pointers
     void setVcthrDisable(PixelFECConfigInterface* pixelFEC, PixelNameTranslation* trans) const;
+    
+    //Loops through all of the module's ROCs, and for each:
+    //	Set Vcthr to its nominal value
+    //	Enable to the ROC
+    //It is the responsability of the user to provide non-null pointers 
     void setVcthrEnable(PixelFECConfigInterface* pixelFEC, PixelNameTranslation* trans, PixelDetectorConfig* detconfig) const;
 
     void writeBinary(std::string filename) const;
-
     void         writeASCII(std::string dir) const;
-    void 	 writeXML(        pos::PixelConfigKey key, int version, std::string path) const  {;}
+    void 	 writeXML(        pos::PixelConfigKey key, int version, 
+				  std::string path) const  {;}
+
     virtual void writeXMLHeader(  pos::PixelConfigKey key, 
 				  int version, 
 				  std::string path, 
@@ -97,9 +131,11 @@ namespace pos{
 				  std::ofstream *out1 = NULL,
 				  std::ofstream *out2 = NULL
 				  ) const ;
-    virtual void writeXML( 	  std::ofstream *out,		        				    
+
+    virtual void writeXML( 	  std::ofstream *out,		        		
 			   	  std::ofstream *out1 = NULL ,	       
 			   	  std::ofstream *out2 = NULL ) const ; 
+
     virtual void writeXMLTrailer( std::ofstream *out, 
 				  std::ofstream *out1 = NULL,
 				  std::ofstream *out2 = NULL
@@ -108,8 +144,15 @@ namespace pos{
     friend std::ostream& operator<<(std::ostream& s, const PixelDACSettings& mask);
 
   private:
+    //List of all the pixelROCDACSettings Objects contained within one module 
     std::vector<std::shared_ptr<PixelROCDACSettings>> dacsettings_;
-    bool  ROCType_; //  false means Phase0 ROC, true means Phase1 ROC
+    
+    //value that determines which type of ROC we are working with.  
+    //If RocType_ == true, then we are using Phase1 ROCs
+    bool  ROCType_;
+
+    //determines the status of the specified ROC
+    //returns true if the specified ROC is disabled
     bool rocIsDisabled(const PixelDetectorConfig* detconfig, const PixelROCName rocname) const;
 
   };

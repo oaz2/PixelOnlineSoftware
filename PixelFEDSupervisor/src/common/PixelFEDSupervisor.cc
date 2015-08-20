@@ -5,7 +5,7 @@
  * Authors: Souvik Das, Anders Ryd, Karl Ecklund   		         *
  *************************************************************************/
 #define READ_LASTDAC  // Enable the last dac writing
-
+#define EXP_CODE //Enable experimental code
 #include "PixelFEDSupervisor/include/PixelFEDSupervisor.h"
 
 #include "PixelUtilities/PixelFEDDataTools/include/PixelFEDDataTypes.h"
@@ -2197,7 +2197,10 @@ bool PixelFEDSupervisor::job_Configure ()
 
   std::map <unsigned int, std::set<unsigned int> > fedsAndChannels=theDetectorConfiguration_->getFEDsAndChannels(theNameTranslation_);
   std::map <unsigned int, std::set<unsigned int> >::iterator i_fedsAndChannels=fedsAndChannels.begin();
+  int counter = 1;
   for (;i_fedsAndChannels!=fedsAndChannels.end();++i_fedsAndChannels) {
+    std::cout << "Counter is: " << counter << std::endl; //testcode
+
     unsigned long fednumber=i_fedsAndChannels->first;
     unsigned int fedcrate=theFEDConfiguration_->crateFromFEDNumber(fednumber);
     if (fedcrate==crate_) {
@@ -2206,9 +2209,24 @@ bool PixelFEDSupervisor::job_Configure ()
       vmeBaseAddressAndFEDNumberAndChannels_.insert(make_pair(make_pair(vmeBaseAddress, fednumber), channels));
       
       VMEPtr_[vmeBaseAddress]=new HAL::VMEDevice(*addressTablePtr_, *busAdapter_, vmeBaseAddress);
+#ifdef EXP_CODE
+      if (theFEDConfiguration_->getFEDTypeFromFEDNumber(fednumber)==phase1){
+        FEDInterface_[vmeBaseAddress]=new PixelP1FEDInterface(VMEPtr_[vmeBaseAddress]);
+        FEDInterfaceFromFEDnumber_[fednumber]=FEDInterface_[vmeBaseAddress];
+        FEDInterface_[vmeBaseAddress]->reset();
+      }
+
+      else{
+	FEDInterface_[vmeBaseAddress]=new PixelP0FEDInterface(VMEPtr_[vmeBaseAddress]);
+        FEDInterfaceFromFEDnumber_[fednumber]=FEDInterface_[vmeBaseAddress];
+        FEDInterface_[vmeBaseAddress]->reset();
+      }
+#else 
       FEDInterface_[vmeBaseAddress]=new PixelFEDInterface(VMEPtr_[vmeBaseAddress]);
       FEDInterfaceFromFEDnumber_[fednumber]=FEDInterface_[vmeBaseAddress];
       FEDInterface_[vmeBaseAddress]->reset();
+#endif 
+
       dataFIFO1_[vmeBaseAddress]=new std::stringstream();
       dataFIFO2_[vmeBaseAddress]=new std::stringstream();
       dataFIFO3_[vmeBaseAddress]=new std::stringstream();
@@ -2254,7 +2272,7 @@ bool PixelFEDSupervisor::job_Configure ()
       }
       
     }
-
+    counter++; 
   }
 
   diagService_->reportError("FED getFEDBoards total calls:"+stringF(getFEDCardTimer.ntimes())+" total time:"+stringF(getFEDCardTimer.tottime())+"  avg time:"+stringF(getFEDCardTimer.avgtime()),DIAGINFO);

@@ -2267,10 +2267,11 @@ void PixelFECSupervisor::stateConfiguring(toolbox::fsm::FiniteStateMachine &fsm)
 
 	tempTBMs = theTBMs_.find(*module_name)->second;
         if (tempTBMs==0) XCEPT_RAISE(xdaq::exception::Exception,"Failed to retrieve TBM settings!");
-  	analogInputBiasLast_ .insert(pair<string, int>(module_name->modulename(), tempTBMs->getAnalogInputBias() ) );
+#if 0  
+	analogInputBiasLast_ .insert(pair<string, int>(module_name->modulename(), tempTBMs->getAnalogInputBias() ) );
 	analogOutputBiasLast_.insert(pair<string, int>(module_name->modulename(), tempTBMs->getAnalogOutputBias() ) );
   	analogOutputGainLast_.insert(pair<string, int>(module_name->modulename(), tempTBMs->getAnalogOutputGain() ) );
-
+#endif
 
         configTBMTimer.start();
         bool physics=(theCalibObject_==0);

@@ -20,12 +20,14 @@ using namespace pos;
 
 
 PixelTBMSettings::PixelTBMSettings(std::vector < std::vector< std::string> > &tableMat):PixelConfigBase("","",""){
-  std::string mthn = "]\t[PixelTBMSettings::PixelTBMSettings()]\t\t\t    " ;
+  std::cout << "This constructor is not supported" << std::endl;
+  assert(0);
+  /*std::string mthn = "]\t[PixelTBMSettings::PixelTBMSettings()]\t\t\t    " ;
   std::vector< std::string > ins = tableMat[0];
   std::map<std::string , int > colM;
   std::vector<std::string > colNames;
 
-  /**
+  
 
      EXTENSION_TABLE_NAME:     (VIEW:)
 
@@ -46,7 +48,7 @@ PixelTBMSettings::PixelTBMSettings(std::vector < std::vector< std::string> > &ta
      ANLG_OUTGAIN_VAL			       NOT NULL NUMBER(38)
 
      N.B.: Here we should (MUST) get a single row referring to a particula module for a particula version.
-  */
+  
 
   colNames.push_back("CONFIG_KEY" 	);
   colNames.push_back("KEY_TYPE"   	);
@@ -96,7 +98,7 @@ PixelTBMSettings::PixelTBMSettings(std::vector < std::vector< std::string> > &ta
       else{
 	singlemode_=false;
       }
-    }
+    }*/
 }//end contructor
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -118,83 +120,26 @@ PixelTBMSettings::PixelTBMSettings(std::string filename):
 	}
 	
        	std::string tag;
-
-	PixelROCName tmp(in);
-
-	rocid_=tmp;
-
-        unsigned int tmpint;	
-
 	in >> tag;
-	//std::cout << "Tag="<<tag<<std::endl;
-	assert(tag=="AnalogInputBias:");
-	in >> tmpint;
-	analogInputBias_=tmpint;
-
-	in >> tag;
-	//std::cout << "Tag="<<tag<<std::endl;
-	assert(tag=="AnalogOutputBias:");
-	in >> tmpint;
-	analogOutputBias_=tmpint;
-
-	in >> tag;
-	//std::cout << "Tag="<<tag<<std::endl;
-	assert(tag=="AnalogOutputGain:");
-	in >> tmpint;
-	analogOutputGain_=tmpint;
-
-	in >> tag;
-	//std::cout << "Tag="<<tag<<std::endl;
-	assert(tag=="Mode:");
-	in >> tag;
-	assert(tag=="SingleMode"||tag=="DualMode");
-	
-	singlemode_=true;
-
-	if (tag=="DualMode") singlemode_=false;
-
-	in.close();
-
+	if(tag.compare("digital")==0){//digital
+		tbmType_= true; 
+		std::cout << "digital TBM" << std::endl;
+		in >> tag;
+		tbmP1 = new PixelP1TBMSettings(in,tag);
+	}
+	else{//analog
+		tbmType_ = false;
+		std::cout<< "analog TBM, tag: " << tag  << std::endl;
+		if(tag.compare("analog")==0){
+			in >> tag;
+		}
+		std::cout<< "tag is now: " << tag << std::endl;
+		tbmP0 = new PixelP0TBMSettings(in,tag);
+	}
     }
     else{
-
-	std::ifstream in(filename.c_str(),std::ios::binary);
-
-	if (!in.good()){
-	    std::cout << __LINE__ << mthn << "Could not open:"<<filename<<std::endl;
-	    assert(0);
-	}
-	else {
-	    std::cout << __LINE__ << mthn << "Opened:"<<filename<<std::endl;
-	}
-
-	char nchar;
-	std::string s1;
-
-	in.read(&nchar,1);
-
-	s1.clear();
-
-	//wrote these lines of code without ref. needs to be fixed
-	for(int i=0;i< nchar; i++){
-	    char c;
-	    in >>c;
-	    s1.push_back(c);
-	}
-
-	PixelROCName tmp(s1);
-
-	rocid_=tmp;
-
-	in >> analogInputBias_;
-	in >> analogOutputBias_;
-	in >> analogOutputGain_;
-	in >> singlemode_;
-
-	in.close();
-
-
-
+	std::cout << "ERROR: Binary not supported" << std::endl;
+	assert(0);
     }
 
 
@@ -202,14 +147,11 @@ PixelTBMSettings::PixelTBMSettings(std::string filename):
 
 void PixelTBMSettings::setTBMGenericValue(std::string what, int value) 
 {
- if(      what == "analogInputBias" )  {analogInputBias_  = (unsigned char)value;}
- else if( what == "analogOutputBias" ) {analogOutputBias_ = (unsigned char)value;}
- else if( what == "analogOutputGain" ) {analogOutputGain_ = (unsigned char)value;}
- else if( what == "Mode" )             {singlemode_       = (bool)value;         }
- else 
- {
-   std::cout << __LINE__ << "]\t[PixelTBMSettings::setTBMGenericValue()]\t\tFATAL: invalid key/value pair: " << what << "/" << value << std::endl ; 
-   assert(0);
+ if(tbmType_ == true ){
+	tbmP1->setTBMGenericValue(what, value);
+ }
+ else{
+	tbmP0->setTBMGenericValue(what, value);
  }
 }
  
@@ -217,120 +159,35 @@ void PixelTBMSettings::writeBinary(std::string filename) const {
 
     std::ofstream out(filename.c_str(),std::ios::binary);
 
-    out << (char)rocid_.rocname().size();
-    out.write(rocid_.rocname().c_str(),rocid_.rocname().size());
-
-    out <<analogInputBias_;
-    out <<analogOutputBias_;
-    out <<analogOutputGain_;
-    out << singlemode_;
-
+    if(tbmType_ == true){
+	tbmP1->writeBinary(out);
+    }
+    else{
+	tbmP0->writeBinary(out);
+    }
 
 }
 
 void PixelTBMSettings::writeASCII(std::string dir) const {
-
-  PixelModuleName module(rocid_.rocname());
   
-  if (dir!="") dir+="/";
-  std::string filename=dir+"TBM_module_"+module.modulename()+".dat";
-
-    std::ofstream out(filename.c_str());
-
-    out << rocid_.rocname() << std::endl;
-
-    out << "AnalogInputBias: "<<(int)analogInputBias_<<std::endl;
-    out << "AnalogOutputBias: "<<(int)analogOutputBias_<<std::endl;
-    out << "AnalogOutputGain: "<<(int)analogOutputGain_<<std::endl;
-    out << "Mode: ";
-    if (singlemode_) {
-      out << "SingleMode" << std::endl;
+    if(tbmType_ == true){
+	tbmP1->writeASCII(dir);
     }
     else{
-      out << "DualMode" << std::endl;
+	tbmP0->writeASCII(dir);
     }
 }
 
 void PixelTBMSettings::generateConfiguration(PixelFECConfigInterface* pixelFEC,
 					     PixelNameTranslation* trans,
-					     bool physics, bool doResets) const{
-
-    PixelHdwAddress theROC=*(trans->getHdwAddress(rocid_));
-
-
-    int mfec=theROC.mfec();
-    int mfecchannel=theROC.mfecchannel();
-    int tbmchannel=14; 
-    int tbmchannelB=15; 
-    int hubaddress=theROC.hubaddress();
-
-    if (doResets) {
-      pixelFEC->injectrsttbm(mfec, 1);
-      pixelFEC->injectrstroc(mfec,1);
+    					     bool physics, bool doResets) const{
+    if (tbmType_== true){//have a digital one
+	//do digital stuff
+	tbmP1->generateConfiguration(pixelFEC, trans, physics, doResets);
     }
-    pixelFEC->enablecallatency(mfec,0);
-    pixelFEC->disableexttrigger(mfec,0);
-    pixelFEC->injecttrigger(mfec,0);
-    pixelFEC->callatencycount(mfec,79);
-
-    //pixelFEC->synccontrolregister(mfec);
-
-    //Reset TBM and reset ROC
-    if (doResets)    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 2, 0x14, 0);
-    //setting speed to 40MHz
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 0, 1, 0);
-    // setting the mode, we should always stay in the CAL mode
-    // since the EventNumberClear Mode does not work correctly
-    //if (physics) {  // comment out, stau always in the CAL mode,  d.k. 27/09/09
-    //pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 1, 0x80, 0);
-    //} else {
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 1, 0xc0, 0);
-    //}
-    //Enable token and analog output
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 4, 0x0, 0);
-
-    //Analog input bias
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 5, 
-		     analogInputBias_, 0);
-    //Analog output bias
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 6, 
-		     analogOutputBias_, 0);
-    //Analog output gain
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannel, hubaddress, 4, 7, 
-		     analogOutputGain_, 0);
-
-
-    //setting speed to 40MHz
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannelB, hubaddress, 4, 0, 1, 0);
-    //pre-calibration, stay always in this mode
-    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannelB, hubaddress, 4, 1, 0xc0, 0);
-    //Reset TBM and reset ROC
-    if (doResets)    pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannelB, hubaddress, 4, 2, 0x14, 0);
-    //Enable token and analog output
-    if (singlemode_){
-      pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannelB, hubaddress, 4, 4, 0x3, 0);
+    else{//analog
+	tbmP0->generateConfiguration(pixelFEC, trans, physics, doResets);
     }
-    else{
-      pixelFEC->tbmcmd(mfec, mfecchannel, tbmchannelB, hubaddress, 4, 4, 0x0, 0);
-    }
-} 
-
-
-std::ostream& pos::operator<<(std::ostream& s, const PixelTBMSettings& tbm){
-
-    s << "Module          :"<<tbm.rocid_.rocname() <<std::endl; 
-    s << "analogInputBias :"<<tbm.analogInputBias_<<std::endl;
-    s << "analogOutputBias:"<<tbm.analogOutputBias_<<std::endl;
-    s << "analogOutputGain:"<<tbm.analogOutputGain_<<std::endl;
-    if (tbm.singlemode_){
-      s << "mode            :Singlemode"<<std::endl;
-    }
-    else{
-      s << "mode            :Dualmode"<<std::endl;
-    }
-
-    return s;
-
 }
 //=============================================================================================
 void PixelTBMSettings::writeXMLHeader(pos::PixelConfigKey key, 
@@ -378,24 +235,13 @@ void PixelTBMSettings::writeXML(std::ofstream *outstream,
                                 std::ofstream *out1stream,
                                 std::ofstream *out2stream) const 
 {
-  std::string mthn = "]\t[PixelTBMSettings::writeXML()]\t\t\t    " ;
-
-  PixelModuleName module(rocid_.rocname());
-  													     
-  *outstream << "  <DATA>"										     << std::endl ;
-  *outstream << "   <MODULE_NAME>"	<< rocid_.rocname()	 << "</MODULE_NAME>"			     << std::endl ;
-  *outstream << "   <ANLG_INBIAS_VAL>"  <<(int)analogInputBias_  << "</ANLG_INBIAS_VAL>"		     << std::endl ;
-  *outstream << "   <ANLG_OUTBIAS_VAL>" <<(int)analogOutputBias_ << "</ANLG_OUTBIAS_VAL>"		     << std::endl ;
-  *outstream << "   <ANLG_OUTGAIN_VAL>" <<(int)analogOutputGain_ << "</ANLG_OUTGAIN_VAL>"		     << std::endl ;
-  if (singlemode_) {											     	
-    *outstream << "  <TBM_MODE>SingleMode</TBM_MODE>" 					 		     << std::endl ;
+  if(tbmType_ == true ){
+	tbmP1->writeXML(outstream, out1stream, out2stream);
   }
-  else{ 												     
-    *outstream << "  <TBM_MODE>DualMode</TBM_MODE>"   					 		     << std::endl ;
-  }													     
-  *outstream << "  </DATA>"                                                               		     << std::endl ;
+  else{
+	tbmP0->writeXML(outstream, out1stream, out2stream);
+  }
 }
-
 //=============================================================================================
 void PixelTBMSettings::writeXMLTrailer(std::ofstream *outstream,
                                        std::ofstream *out1stream,
